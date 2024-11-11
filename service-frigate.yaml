@@ -1,0 +1,35 @@
+## Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frigate
+  namespace: frigate
+  labels:
+    app: frigate
+#  annotations:
+#    metallb.universe.tf/allow-shared-ip: "frigate"
+#     metallb.universe.tf/loadBalancerIPs: 65.43.40.107
+spec:
+  selector:
+    app: frigate
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 8971
+    targetPort: 8971
+    name: http
+  - port: 5000
+    targetPort: 5000
+    name: http-internal
+  - port: 8554
+    targetPort: 8554
+    name: rtsp
+  - port: 8555
+    targetPort: 8555
+    name: webrtc
+  - port: 8555
+    protocol: UDP
+    targetPort: 8555
+    name: webrtc-udp
+    
