@@ -1,1 +1,77 @@
-koush/scrypted:16-bullseye"
+## StatefulSet
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: scrypted
+spec:
+  selector:
+    matchLabels:
+      app: scrypted
+  serviceName: "scrypted"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scrypted
+    spec:
+      containers:
+      - name: scrypted
+        image: koush/scrypted:16-bullseye
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 10080
+          name: http
+        env:
+        - name: TZ
+          value: America/Detroit
+        volumeMounts:
+#        - name: dshm
+#          mountPath: /dev/shm
+        - name: config
+          mountPath: "/config"
+#        - name: scrypted-config
+#          mountPath: /config/config.yaml   # Path in the container where the file will be mounted
+#          subPath: config.yaml             # Maps only the config.yml file from the ConfigMap
+        - name: media
+          mountPath: "/media/scrypted"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2000m"
+          limits:
+            memory: "4Gi"
+            cpu: "6000m"
+            gpu.intel.com/i915: 1
+#            squat.ai/coral: 1
+#        securityContext:
+#          privileged: true
+        readinessProbe:                # Check that the http server is responding to ensure the container is up
+          tcpSocket:
+            port: 10080
+        livelinessProbe:               # Check that the http server is responding to ensure the container is up
+          tcpSocket:
+            port: 10080
+#            initialDelaySeconds: 3
+#            periodSeconds: 3
+#            failureThreshold: 5
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
+      - name: config
+        persistentVolumeClaim:
+          claimName: scrypted-config
+      - name: scrypted-config
+        configMap:
+          name: configmap-scrypted              # Name of the ConfigMap
+          items:
+          - key: config.yml               # Key in the ConfigMap to mount
+            path: config.yml              # Path to be used inside the container
+      - name: media
+        nfs:
+          path: /mnt/pool0/scrypted
+          server: truenas.farhoodliquor.dmz
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
