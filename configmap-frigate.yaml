@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-frigate-config
+  namespace: frigate
+data:
+  config.yaml: |-
+tls:
+  enabled: false
+mqtt:
+  enabled: false
+detectors:
+  cpu1:
+    type: cpu
+  ov:
+    type: openvino
+    device: GPU
+model:
+  width: 300
+  height: 300
+  input_tensor: nhwc
+  input_pixel_format: bgr
+  path: /openvino-model/ssdlite_mobilenet_v2.xml
+  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+detect:
+  width: 1280
+  height: 720
+  fps: 5
+motion:
+  enabled: true
+ffmpeg:
+  hwaccel_args: preset-intel-qsv-h264
+cameras:
+  Basement_Mechanical_1:
+    ffmpeg:
+      inputs:
+        - path: rtsps://192.168.192.250:7441/SA0SZPTx8Bm1ghRi?enableSrtp$0
+          roles:
+            - detect
+            - rtmp
+  Basement_3D_Printer_Pinky:
+    ffmpeg:
+      inputs:
+        - path: rtsp://pinky.farhoodliquor.lan:8554/stream.h264
+          roles:
+            - detect
+            - rtmp
+  Basement_3D_Printer_The_Brain:
+    ffmpeg:
+      inputs:
+        - path: rtsp://thebrain.farhoodliquor.lan:8554/stream.h264
+          roles:
+            - detect
+            - rtmp
