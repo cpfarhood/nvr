@@ -75,7 +75,7 @@ spec:
           claimName: frigate-config
       - name: frigate-config
         configMap:
-          name: configmap-frigate-config              # Name of the ConfigMap
+          name: configmap-frigate              # Name of the ConfigMap
           items:
           - key: config.yml               # Key in the ConfigMap to mount
             path: config.yml              # Path to be used inside the container
