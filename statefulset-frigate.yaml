@@ -1,0 +1,87 @@
+## StatefulSet
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: frigate
+  namespace: frigate
+spec:
+  selector:
+    matchLabels:
+      app: frigate
+  serviceName: "frigate"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frigate
+    spec:
+      containers:
+      - name: frigate
+        image: ghcr.io/blakeblackshear/frigate:stable
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8971
+          name: http
+        - containerPort: 5000
+          name: http-internal
+        - containerPort: 8554
+          name: rtsp
+        - containerPort: 8555
+          name: webrtc
+        - containerPort: 8555
+          protocol: UDP
+          name: webrtc-udp
+        env:
+        - name: TZ
+          value: America/Detroit
+        volumeMounts:
+        - name: dshm
+          mountPath: /dev/shm
+        - name: config
+          mountPath: "/config"
+#        - name: frigate-config
+#          mountPath: /config/config.yaml   # Path in the container where the file will be mounted
+#          subPath: config.yaml             # Maps only the config.yml file from the ConfigMap
+        - name: media
+          mountPath: "/media/frigate"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2000m"
+          limits:
+            memory: "4Gi"
+            cpu: "6000m"
+            gpu.intel.com/i915: 1
+            squat.ai/coral: 1
+        securityContext:
+          privileged: true
+        readinessProbe:                # Check that the http server is responding to ensure the container is up
+          tcpSocket:
+            port: 8971
+        livelinessProbe:               # Check that the http server is responding to ensure the container is up
+          tcpSocket:
+            port: 8971
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            failureThreshold: 5
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
+      - name: config
+        persistentVolumeClaim:
+          claimName: frigate-config
+      - name: frigate-config
+        configMap:
+          name: configmap-frigate-config              # Name of the ConfigMap
+          items:
+          - key: config.yml               # Key in the ConfigMap to mount
+            path: config.yml              # Path to be used inside the container
+      - name: media
+        nfs:
+          path: /mnt/pool0/frigate
+          server: truenas.farhoodliquor.dmz
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
