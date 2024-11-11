@@ -1,0 +1,120 @@
+## ConfigMap
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-go2rtc-pinky-config
+  namespace: frigate
+data:
+  go2rtc.yaml: |-
+    log:
+      level: debug  # default level
+      api: trace
+      exec: debug
+      ngrok: info
+      rtsp: warn
+      streams: error
+      webrtc: fatal
+    streams:
+      Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware
+      Basement_3D_Printer_Pinky_Live: ffmpeg:rtsp://go2rtc-pinky:8554/Basement_3D_Printer_Pinky#hardware#width=1024
+    webrtc:
+      candidates:
+      - frigate-0:8555
+      - stun:8555    
+---
+
+## Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go2rtc-pinky
+  namespace: frigate
+  labels:
+    app: go2rtc-pinky
+#  annotations:
+#    metallb.universe.tf/allow-shared-ip: "frigate"
+spec:
+  selector:
+    app: go2rtc-pinky
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 80
+    targetPort: 1984
+    name: http
+  - port: 8554
+    targetPort: 8554
+    name: rtsp
+  - port: 8555
+    targetPort: 8555
+    name: webrtc
+  - port: 8555
+    protocol: UDP
+    targetPort: 8555
+    name: webrtc-udp
+---
+
+## Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go2rtc-pinky
+spec:
+  selector:
+    matchLabels:
+      app: go2rtc-pinky
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: go2rtc-pinky
+    spec:
+      containers:
+        - name: go2rtc # https://github.com/AlexxIT/go2rtc
+          image: alexxit/go2rtc:latest-hardware
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: "America/Detroit"
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+              gpu.intel.com/i915: 1
+          ports:
+            - name: "web"
+              containerPort: 1984
+            - name: "rtsp"
+              containerPort: 8554
+            - name: "webrtc"
+              containerPort: 8555
+            - name: "webrtc-udp"
+              containerPort: 8555
+              protocol: UDP
+          volumeMounts:
+            - name: go2rtc-pinky-config
+              mountPath: /config
+          readinessProbe:
+            httpGet:
+              path: /
+              port: web
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: web
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            failureThreshold: 5
+      volumes:
+        - name: go2rtc-pinky-config
+          configMap:
+            name: configmap-go2rtc-pinky-config
