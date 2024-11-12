@@ -20,7 +20,7 @@ spec:
         image: koush/scrypted:16-bullseye
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 10080
+        - containerPort: 11080
           name: http
         env:
         - name: TZ
@@ -48,10 +48,10 @@ spec:
 #          privileged: true
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
-            port: 10080
+            port: 11080
         livelinessProbe:               # Check that the http server is responding to ensure the container is up
           tcpSocket:
-            port: 10080
+            port: 11080
 #            initialDelaySeconds: 3
 #            periodSeconds: 3
 #            failureThreshold: 5
