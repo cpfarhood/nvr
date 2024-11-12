@@ -1,0 +1,20 @@
+## Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scrypted
+  labels:
+    app: scrypted
+#  annotations:
+#    metallb.universe.tf/allow-shared-ip: "frigate"
+#     metallb.universe.tf/loadBalancerIPs: 65.43.40.107
+spec:
+  selector:
+    app: scrypted
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 11080
+    targetPort: 11080
+    name: http
