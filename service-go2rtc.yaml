@@ -1,0 +1,30 @@
+## Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go2rtc-pinky
+  namespace: frigate
+  labels:
+    app: go2rtc-pinky
+#  annotations:
+#    metallb.universe.tf/allow-shared-ip: "frigate"
+spec:
+  selector:
+    app: go2rtc-pinky
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 80
+    targetPort: 1984
+    name: http
+  - port: 8554
+    targetPort: 8554
+    name: rtsp
+  - port: 8555
+    targetPort: 8555
+    name: webrtc
+  - port: 8555
+    protocol: UDP
+    targetPort: 8555
+    name: webrtc-udp
