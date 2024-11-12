@@ -1,0 +1,24 @@
+## ConfigMap
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-go2rtc
+  namespace: frigate
+data:
+  go2rtc.yaml: |-
+    log:
+      level: debug  # default level
+      api: trace
+      exec: debug
+      ngrok: info
+      rtsp: warn
+      streams: error
+      webrtc: fatal
+    streams:
+      Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware
+      Basement_3D_Printer_Pinky_Live: ffmpeg:rtsp://go2rtc-pinky:8554/Basement_3D_Printer_Pinky#hardware#width=1024
+    webrtc:
+      candidates:
+      - frigate-0:8555
+      - stun:8555        
