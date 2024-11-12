@@ -16,10 +16,10 @@ data:
       streams: error
       webrtc: fatal
     streams:
-      Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware
-      Basement_3D_Printer_Pinky_Live: ffmpeg:rtsp://go2rtc-pinky:8554/Basement_3D_Printer_Pinky#hardware#width=1024
-      Basement_3D_Printer_The_Brain: ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware
-      Basement_3D_Printer_The_Brain_Live: ffmpeg:rtsp://go2rtc-thebrain:8554/Basement_3D_Printer_The_Brain#hardware#width=1024
+      Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware#video=h264
+      Basement_3D_Printer_Pinky_Live: ffmpeg:rtsp://go2rtc-pinky:8554/Basement_3D_Printer_Pinky#hardware#video=h264#width=1024
+      Basement_3D_Printer_The_Brain: ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video=h264
+      Basement_3D_Printer_The_Brain_Live: ffmpeg:rtsp://go2rtc-thebrain:8554/Basement_3D_Printer_The_Brain#hardware#video=h264#width=1024
     webrtc:
       candidates:
       - frigate-0:8555
