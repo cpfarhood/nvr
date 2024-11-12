@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: scrypted
-        image: koush/scrypted:latest
+        image: koush/scrypted:16-bullseye
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11080
