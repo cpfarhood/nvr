@@ -4,10 +4,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go2rtc
+  labels:
+    app.kubernetes.io/name: go2rtc
 spec:
   selector:
     matchLabels:
-      app: go2rtc
+      app.kubernetes.io/name: go2rtc
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -24,7 +26,7 @@ spec:
   template:
     metadata:
       labels:
-        app: go2rtc
+        app.kubernetes.io/name: go2rtc
     spec:
       containers:
         - name: go2rtc # https://github.com/AlexxIT/go2rtc
