@@ -5,12 +5,10 @@ kind: Service
 metadata:
   name: go2rtc
   labels:
-    app: go2rtc
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: "frigate"
+    app.kubernetes.io/name: go2rtc
 spec:
   selector:
-    app: go2rtc
+    app.kubernetes.io/name: go2rtc
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
@@ -27,3 +25,27 @@ spec:
     protocol: UDP
     targetPort: 8555
     name: webrtc-udp
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: go2rtc
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: go2rtc
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+    scaleUp:
+      stabilizationWindowSeconds: 60
