@@ -1,0 +1,57 @@
+## Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: ai-server
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ai-server
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+           matchExpressions:
+            - key: <label-key>
+              operator: In
+              values:
+              - <label-value>
+          topologyKey: kubernetes.io/hostname
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ai-server
+    spec:
+      containers:
+        - name: ai-server 
+          image: codeproject/ai-server:latest
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: "America/Detroit"
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+              gpu.intel.com/i915: 1
+          ports:
+            - name: "http-32168"
+              containerPort: 32168
+#          readinessProbe:
+#            httpGet:
+#              path: /
+#              port: web
+#            initialDelaySeconds: 10
+#            periodSeconds: 20
+#            failureThreshold: 5
+#          livenessProbe:
