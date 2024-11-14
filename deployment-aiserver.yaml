@@ -46,6 +46,8 @@ spec:
               cpu: "1000m"
               gpu.intel.com/i915: 1
           ports:
+            - name: "http"
+              containerPort: 5000
             - name: "http-32168"
               containerPort: 32168
 #          readinessProbe:
