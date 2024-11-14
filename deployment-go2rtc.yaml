@@ -35,7 +35,6 @@ spec:
               value: "America/Detroit"
           securityContext:
             allowPrivilegeEscalation: false
-            runAsNonRoot: true
           resources:
             requests:
               memory: "32Mi"

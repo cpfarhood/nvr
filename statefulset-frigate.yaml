@@ -56,7 +56,6 @@ spec:
             squat.ai/coral: 1
         securityContext:
           allowPrivilegeEscalation: false
-          runAsNonRoot: true
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 8971
