@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: scrypted
-        image: ghcr.io/koush/scrypted:v0.123.9-jammy-full
+        image: ghcr.io/koush/scrypted
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11080
