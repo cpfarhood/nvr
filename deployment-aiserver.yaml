@@ -39,25 +39,23 @@ spec:
             allowPrivilegeEscalation: false
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: "512Mi"
+              cpu: "500m"
             limits:
               memory: "1024Mi"
               cpu: "1000m"
               gpu.intel.com/i915: 1
           ports:
-            - name: "http"
-              containerPort: 5000
             - name: "http-32168"
               containerPort: 32168
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: web
-#            initialDelaySeconds: 10
-#            periodSeconds: 20
-#            failureThreshold: 5
-#          livenessProbe:
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http-32168
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http-32168
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
