@@ -3,14 +3,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ai-server
+  name: aiserver
   labels:
-    app.kubernetes.io/name: ai-server
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: "frigate"
+    app.kubernetes.io/name: aiserver
 spec:
   selector:
-    app.kubernetes.io/name: ai-server
+    app.kubernetes.io/name: aiserver
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
