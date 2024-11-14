@@ -30,11 +30,6 @@ spec:
 #          mountPath: /dev/shm
         - name: config
           mountPath: "/server"
-#        - name: scrypted-config
-#          mountPath: /config/config.yaml   # Path in the container where the file will be mounted
-#          subPath: config.yaml             # Maps only the config.yml file from the ConfigMap
-        - name: media
-          mountPath: "/media/scrypted"
         resources:
           requests:
             memory: "2Gi"
@@ -60,18 +55,22 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: 1Gi
-      - name: config
-        persistentVolumeClaim:
-          claimName: scrypted-config
       - name: scrypted-config
         configMap:
           name: configmap-scrypted              # Name of the ConfigMap
           items:
           - key: config.yml               # Key in the ConfigMap to mount
             path: config.yml              # Path to be used inside the container
-      - name: media
-        nfs:
-          path: /mnt/pool0/scrypted
-          server: truenas.farhoodliquor.dmz
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+#      - name: media
+#        nfs:
+#         path: /mnt/pool0/scrypted
+#          server: truenas.farhoodliquor.dmz
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 4Gi
