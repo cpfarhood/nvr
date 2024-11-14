@@ -1,7 +1,7 @@
 ## This is an integration pod for codeproject ai-server
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: aiserver
   labels:
@@ -33,8 +33,8 @@ spec:
           image: codeproject/ai-server:latest
           imagePullPolicy: Always
           env:
-            - name: TZ
-              value: "America/Detroit"
+          - name: TZ
+            value: "America/Detroit"
           securityContext:
             allowPrivilegeEscalation: false
           resources:
@@ -46,8 +46,13 @@ spec:
               cpu: "2000m"
               gpu.intel.com/i915: 1
           ports:
-            - name: "http-32168"
-              containerPort: 32168
+          - name: "http-32168"
+            containerPort: 32168
+          volumeMounts:
+          - name: config
+            mountPath: "/etc/codeproject/ai"
+          - name: modules
+            mountPath: "/app/modules"
           readinessProbe:
             httpGet:
               path: /
@@ -56,6 +61,23 @@ spec:
             httpGet:
               path: /
               port: http-32168
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 4Gi
+  - metadata:
+      name: modules
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 4Gi
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -64,7 +86,7 @@ metadata:
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
-    kind: Deployment
+    kind: StatefulSet
     name: aiserver
   minReplicas: 1
   maxReplicas: 3
