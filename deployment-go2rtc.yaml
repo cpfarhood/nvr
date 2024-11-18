@@ -97,6 +97,6 @@ spec:
           averageUtilization: 75
   behavior:
     scaleDown:
-      stabilizationWindowSeconds: 300
+      stabilizationWindowSeconds: 900
     scaleUp:
-      stabilizationWindowSeconds: 60
+      stabilizationWindowSeconds: 180
