@@ -8,11 +8,11 @@ metadata:
     app.kubernetes.io/name: go2rtc
   annotations:
     metallb.universe.tf/allow-shared-ip: "frigate-65.43.40.110"
-    metallb.universe.tf/loadBalancerIPs: 65.43.40.110
 spec:
   selector:
     app.kubernetes.io/name: go2rtc
   type: LoadBalancer
+  loadBalancerIP: 65.43.40.110
   externalTrafficPolicy: Local
   ports:
   - port: 1984
