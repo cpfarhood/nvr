@@ -24,6 +24,22 @@ spec:
   - port: 8555
     targetPort: 8555
     name: webrtc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go2rtc-udp
+  labels:
+    app.kubernetes.io/name: go2rtc
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "frigate"
+spec:
+  selector:
+    app.kubernetes.io/name: go2rtc
+  type: LoadBalancer
+  loadBalancerIP: 172.16.199.20
+  externalTrafficPolicy: Local
+  ports:
   - port: 8555
     protocol: UDP
     targetPort: 8555
