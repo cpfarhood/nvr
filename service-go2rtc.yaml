@@ -12,9 +12,9 @@ spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
-  - port: 80
+  - port: 1984
     targetPort: 1984
-    name: http
+    name: http-1984
   - port: 8554
     targetPort: 8554
     name: rtsp
