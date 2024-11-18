@@ -14,10 +14,10 @@ spec:
   type: LoadBalancer
   loadBalancerIP: 172.16.199.20
   externalTrafficPolicy: Cluster # This must be cluster for ip sharing
-  sessionAffinity: ClientIP
-  sessionAffinityConfig:
-    clientIP:
-      timeoutSeconds: 300
+#  sessionAffinity: ClientIP
+#  sessionAffinityConfig:
+#    clientIP:
+#      timeoutSeconds: 300
   ports:
   - port: 1984
     targetPort: 1984
