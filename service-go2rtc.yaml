@@ -12,7 +12,7 @@ spec:
   selector:
     app.kubernetes.io/name: go2rtc
   type: LoadBalancer
-  loadBalancerIP: 65.43.40.110
+  loadBalancerIP: 172.16.199.20
   externalTrafficPolicy: Local
   ports:
   - port: 1984
