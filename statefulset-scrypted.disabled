@@ -7,13 +7,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: scrypted
+      app.kubernetes.io/name: scrypted
   serviceName: "scrypted"
   replicas: 1
   template:
     metadata:
       labels:
-        app: scrypted
+        app.kubernetes.io/name: scrypted
     spec:
       containers:
       - name: scrypted

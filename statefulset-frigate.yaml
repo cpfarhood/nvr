@@ -8,13 +8,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: frigate
+      app.kubernetes.io/name: frigate
   serviceName: "frigate"
   replicas: 1
   template:
     metadata:
       labels:
-        app: frigate
+        app.kubernetes.io/name: frigate
     spec:
       containers:
       - name: frigate

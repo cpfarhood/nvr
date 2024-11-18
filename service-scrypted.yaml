@@ -5,13 +5,13 @@ kind: Service
 metadata:
   name: scrypted
   labels:
-    app: scrypted
+    app.kubernetes.io/name: scrypted
 #  annotations:
 #    metallb.universe.tf/allow-shared-ip: "frigate"
 #     metallb.universe.tf/loadBalancerIPs: 65.43.40.107
 spec:
   selector:
-    app: scrypted
+    app.kubernetes.io/name: scrypted
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
