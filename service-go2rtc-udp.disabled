@@ -1,9 +1,7 @@
-## Service
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: go2rtc
+  name: go2rtc-udp
   labels:
     app.kubernetes.io/name: go2rtc
   annotations:
@@ -15,13 +13,7 @@ spec:
   loadBalancerIP: 172.16.199.20
   externalTrafficPolicy: Local
   ports:
-  - port: 1984
-    targetPort: 1984
-    name: http-1984
-  - port: 8554
-    targetPort: 8554
-    name: rtsp
   - port: 8555
+    protocol: UDP
     targetPort: 8555
-    name: webrtc
-    
+    name: webrtc-udp
