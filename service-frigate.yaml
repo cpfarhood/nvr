@@ -8,7 +8,7 @@ metadata:
     app: frigate
   annotations:
     metallb.universe.tf/allow-shared-ip: "frigate"
-#     metallb.universe.tf/loadBalancerIPs: 65.43.40.107
+    metallb.universe.tf/loadBalancerIPs: 65.43.40.110
 spec:
   selector:
     app: frigate
