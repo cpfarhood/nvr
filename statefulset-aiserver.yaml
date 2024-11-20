@@ -44,7 +44,7 @@ spec:
             limits:
               memory: "2Gi"
               cpu: "2000m"
-              gpu.intel.com/i915: 1
+              squat.ai/coral: 1
           ports:
           - name: "http-32168"
             containerPort: 32168
