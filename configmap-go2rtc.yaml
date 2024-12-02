@@ -18,7 +18,7 @@ data:
     streams:
       Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware#video=copy
       Basement_3D_Printer_The_Brain: ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video=copy
-      Basement_Office_1-Raw: rtsp://go2rtc:frigate1577@192.168.192.55:554/live
+      Basement_Office_1-Raw: ffmpeg:rtsp://go2rtc:go2rtc1577@192.168.192.55:554/live
       Basement_Office_1: ffmpeg:rtsp://go2rtc.nvr.k8s:8554/Basement_Office_1-Armcrest-ProHD-Raw#hardware#video=h264#width=1920
       Basement_Office_1-Detect: ffmpeg:rtsp://go2rtc.nvr.k8s:8554/Basement_Office_1-Armcrest-ProHD-Raw#hardware#video=h264#width=1024
     webrtc:
