@@ -19,14 +19,14 @@ spec:
   - port: 5000
     targetPort: 5000
     name: http-5000
-#  - port: 8554
-#    targetPort: 8554
-#    name: rtsp
-#  - port: 8555
-#    targetPort: 8555
-#    name: webrtc
-#  - port: 8555
-#    protocol: UDP
-#    targetPort: 8555
-#    name: webrtc-udp
+  - port: 8554
+    targetPort: 8554
+    name: rtsp
+  - port: 8555
+    targetPort: 8555
+    name: webrtc
+  - port: 8555
+    protocol: UDP
+    targetPort: 8555
+    name: webrtc-udp
     
