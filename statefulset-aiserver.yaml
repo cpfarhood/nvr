@@ -50,7 +50,7 @@ spec:
           volumeMounts:
           - name: config
             mountPath: "/etc/codeproject/ai"
-          - name: data
+          - name: modules
             mountPath: "/app/modules"
           readinessProbe:
             httpGet:
