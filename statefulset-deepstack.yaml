@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: ai-server 
-          image: deepquestai/ai-server:latest
+          image: deepquestai/deepstack:latest
           imagePullPolicy: Always
           env:
           - name: TZ
