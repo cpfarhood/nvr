@@ -18,14 +18,14 @@ spec:
         app.kubernetes.io/name: deepstack
     spec:
       containers:
-        - name: ai-server 
+        - name: deepstack
           image: deepquestai/deepstack:latest
           imagePullPolicy: Always
           env:
           - name: TZ
             value: "America/Detroit"
           - name: VISION-DETECTION
-            value: True
+            value: "True"
           securityContext:
             allowPrivilegeEscalation: false
           resources:
