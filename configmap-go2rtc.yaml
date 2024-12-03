@@ -23,5 +23,5 @@ data:
       Basement_Office_Camera_1-Detect: ffmpeg:rtsp://go2rtc.nvr.k8s:8554/Basement_Office_Camera_1-Raw#hardware#video=h264#width=1024
     webrtc:
       candidates:
-      - frigate-0:8555
+      - 108.254.166.31:8555
       - stun:8555        
