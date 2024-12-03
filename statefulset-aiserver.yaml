@@ -76,7 +76,9 @@ spec:
       resources:
         requests:
           storage: 8Gi
+
 ---
+## Autoscaler
 #apiVersion: autoscaling/v2
 #kind: HorizontalPodAutoscaler
 #metadata:
