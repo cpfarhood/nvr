@@ -31,7 +31,7 @@ spec:
           name: rtsp
         - containerPort: 8555
           name: webrtc
-       - containerPort: 8555
+        - containerPort: 8555
           protocol: UDP
           name: webrtc-udp
         env:
