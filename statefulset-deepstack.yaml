@@ -1,0 +1,93 @@
+## This is an integration pod for codeproject ai-server
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: deepstack
+  labels:
+    app.kubernetes.io/name: deepstack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: deepstack
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+           matchExpressions:
+            - key: <label-key>
+              operator: In
+              values:
+              - <label-value>
+          topologyKey: kubernetes.io/hostname
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: deepstack
+    spec:
+      containers:
+        - name: ai-server 
+          image: deepquestai/ai-server:latest
+          imagePullPolicy: Always
+          env:
+          - name: TZ
+            value: "America/Detroit"
+          securityContext:
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              memory: "8Gi"
+              cpu: "1000m"
+            limits:
+              memory: "12Gi"
+              cpu: "4000m"
+          ports:
+          - name: "http-5000"
+            containerPort: 5000
+          volumeMounts:
+          - name: config
+            mountPath: "/datastore"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http-5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http-5000
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 4Gi
+---
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: deepstack
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: StatefulSet
+#    name: deepstack
+#  minReplicas: 1
+#  maxReplicas: 3
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 75
+#  behavior:
+#    scaleDown:
+#      stabilizationWindowSeconds: 300
+#    scaleUp:
+#      stabilizationWindowSeconds: 60
