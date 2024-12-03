@@ -35,6 +35,8 @@ spec:
           env:
           - name: TZ
             value: "America/Detroit"
+            name: VISION-DETECTION
+            value: True
           securityContext:
             allowPrivilegeEscalation: false
           resources:
