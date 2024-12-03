@@ -10,18 +10,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: deepstack
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-           matchExpressions:
-            - key: <label-key>
-              operator: In
-              values:
-              - <label-value>
-          topologyKey: kubernetes.io/hostname
+  serviceName: deepstack
   replicas: 1
   template:
     metadata:
