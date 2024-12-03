@@ -39,11 +39,11 @@ spec:
             allowPrivilegeEscalation: false
           resources:
             requests:
-              memory: "1Gi"
+              memory: "4Gi"
               cpu: "1000m"
             limits:
-              memory: "2Gi"
-              cpu: "2000m"
+              memory: "6Gi"
+              cpu: "4000m"
               squat.ai/coral: 1
           ports:
           - name: "http-32168"
@@ -79,26 +79,26 @@ spec:
         requests:
           storage: 4Gi
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: aiserver
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: StatefulSet
-    name: aiserver
-  minReplicas: 1
-  maxReplicas: 3
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 75
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds: 300
-    scaleUp:
-      stabilizationWindowSeconds: 60
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: aiserver
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: StatefulSet
+#    name: aiserver
+#  minReplicas: 1
+#  maxReplicas: 3
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 75
+#  behavior:
+#    scaleDown:
+#      stabilizationWindowSeconds: 300
+#    scaleUp:
+#      stabilizationWindowSeconds: 60
