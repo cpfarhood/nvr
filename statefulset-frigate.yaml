@@ -19,19 +19,21 @@ spec:
       containers:
       - name: frigate
         image: ghcr.io/blakeblackshear/frigate:stable
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
         ports:
         - containerPort: 8971
           name: http
         - containerPort: 5000
           name: http-internal
-#        - containerPort: 8554
-#          name: rtsp
-#        - containerPort: 8555
-#          name: webrtc
-#       - containerPort: 8555
-#          protocol: UDP
-#          name: webrtc-udp
+        - containerPort: 8554
+          name: rtsp
+        - containerPort: 8555
+          name: webrtc
+       - containerPort: 8555
+          protocol: UDP
+          name: webrtc-udp
         env:
         - name: TZ
           value: America/Detroit
