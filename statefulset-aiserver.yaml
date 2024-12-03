@@ -51,8 +51,8 @@ spec:
           volumeMounts:
           - name: config
             mountPath: "/etc/codeproject/ai"
-          - name: modules
-            mountPath: "/app/modules"
+          - name: data
+            mountPath: "/app"
           readinessProbe:
             httpGet:
               path: /
@@ -71,13 +71,13 @@ spec:
         requests:
           storage: 4Gi
   - metadata:
-      name: modules
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: longhorn-perpetual
       resources:
         requests:
-          storage: 4Gi
+          storage: 8Gi
 ---
 #apiVersion: autoscaling/v2
 #kind: HorizontalPodAutoscaler
