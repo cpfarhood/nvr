@@ -1,5 +1,3 @@
-## This is an integration pod for codeproject ai-server
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
