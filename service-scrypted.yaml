@@ -6,9 +6,6 @@ metadata:
   name: scrypted
   labels:
     app.kubernetes.io/name: scrypted
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: "frigate"
-#     metallb.universe.tf/loadBalancerIPs: 65.43.40.107
 spec:
   selector:
     app.kubernetes.io/name: scrypted
@@ -18,3 +15,6 @@ spec:
   - port: 11080
     targetPort: 11080
     name: http
+  - port: 10443
+    targetPort: 10443
+    name: https

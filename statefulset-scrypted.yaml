@@ -1,5 +1,3 @@
-## StatefulSet
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -22,12 +20,14 @@ spec:
         ports:
         - containerPort: 11080
           name: http
+        - containerPort: 10443
+          name: https
         env:
         - name: TZ
           value: America/Detroit
         volumeMounts:
-#        - name: dshm
-#          mountPath: /dev/shm
+        - name: dshm
+          mountPath: /dev/shm
         - name: config
           mountPath: "/server"
         resources:
@@ -39,8 +39,8 @@ spec:
             cpu: "6000m"
             gpu.intel.com/i915: 1
 #            squat.ai/coral: 1
-#        securityContext:
-#          privileged: true
+        securityContext:
+          privileged: true
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 11080
@@ -55,12 +55,12 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: 1Gi
-      - name: scrypted-config
-        configMap:
-          name: configmap-scrypted              # Name of the ConfigMap
-          items:
-          - key: config.yml               # Key in the ConfigMap to mount
-            path: config.yml              # Path to be used inside the container
+#      - name: scrypted-config
+#        configMap:
+#          name: configmap-scrypted              # Name of the ConfigMap
+#          items:
+#          - key: config.yml               # Key in the ConfigMap to mount
+#            path: config.yml              # Path to be used inside the container
 #      - name: media
 #        nfs:
 #         path: /mnt/pool0/scrypted
