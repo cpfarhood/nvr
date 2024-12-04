@@ -13,6 +13,8 @@ spec:
       labels:
         app.kubernetes.io/name: scrypted
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: scrypted
         image: ghcr.io/koush/scrypted
