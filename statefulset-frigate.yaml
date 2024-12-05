@@ -58,10 +58,10 @@ spec:
             squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
-            port: 8971
+            port: 5000
         livelinessProbe:               # Check that the http server is responding to ensure the container is up
           tcpSocket:
-            port: 8971
+            port: 5000
             initialDelaySeconds: 3
             periodSeconds: 3
             failureThreshold: 5
