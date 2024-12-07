@@ -15,21 +15,3 @@ spec:
   selector:
     matchLabels:
       name: frigate-config
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: scrypted-config
-  labels:
-    name: scrypted-config
-    kustomize.toolkit.fluxcd.io/prune: disabled
-spec:
-  accessModes: [ ReadWriteOnce ]
-  storageClassName: longhorn-perpetual
-  resources:
-    requests:
-      storage: 8Gi
-  selector:
-    matchLabels:
-      name: scrypted-config
