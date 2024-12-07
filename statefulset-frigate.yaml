@@ -42,9 +42,6 @@ spec:
           mountPath: /dev/shm
         - name: config
           mountPath: "/config"
-#        - name: frigate-config
-#          mountPath: /config/config.yaml   # Path in the container where the file will be mounted
-#          subPath: config.yaml             # Maps only the config.yml file from the ConfigMap
         - name: media
           mountPath: "/media/frigate"
         resources:
