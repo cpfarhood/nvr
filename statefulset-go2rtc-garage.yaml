@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: go2rtc
+  name: garage
   labels:
-    app.kubernetes.io/name: go2rtc
+    app.kubernetes.io/name: garage
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: go2rtc
+      app.kubernetes.io/name: garage
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -24,10 +24,10 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: go2rtc
+        app.kubernetes.io/name: garage
     spec:
       containers:
-        - name: go2rtc # https://github.com/AlexxIT/go2rtc
+        - name: garage # https://github.com/AlexxIT/garage
           image: alexxit/go2rtc:latest-hardware
           imagePullPolicy: Always
           env:
@@ -83,12 +83,12 @@ spec:
 #apiVersion: autoscaling/v2
 #kind: HorizontalPodAutoscaler
 #metadata:
-#  name: go2rtc
+#  name: garage
 #spec:
 #  scaleTargetRef:
 #    apiVersion: apps/v1
 #    kind: Deployment
-#    name: go2rtc
+#    name: garage
 #  minReplicas: 2
 #  maxReplicas: 3
 #  metrics:
