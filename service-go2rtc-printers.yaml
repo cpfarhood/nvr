@@ -3,12 +3,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: 3dprinters
+  name: printers
   labels:
-    app.kubernetes.io/name: 3dprinters
+    app.kubernetes.io/name: printers
 spec:
   selector:
-    app.kubernetes.io/name: 3dprinters
+    app.kubernetes.io/name: printers
   type: LoadBalancer
   externalTrafficPolicy: Local # This must be "Cluster" for ip sharing
   ports:

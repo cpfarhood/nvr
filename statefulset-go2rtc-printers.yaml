@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: 3dprinters
+  name: printers
   labels:
-    app.kubernetes.io/name: 3dprinters
+    app.kubernetes.io/name: printers
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: 3dprinters
+      app.kubernetes.io/name: printers
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -24,10 +24,10 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: 3dprinters
+        app.kubernetes.io/name: printers
     spec:
       containers:
-        - name: 3dprinters # https://github.com/AlexxIT/3dprinters
+        - name: printers # https://github.com/AlexxIT/printers
           image: alexxit/go2rtc:latest-hardware
           imagePullPolicy: Always
           env:
