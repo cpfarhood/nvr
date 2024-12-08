@@ -76,7 +76,7 @@ spec:
       storageClassName: longhorn-perpetual
       resources:
         requests:
-          storage: 8Gi
+          storage: 16Gi
 ---
 
 ### Autoscaler
