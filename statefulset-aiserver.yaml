@@ -34,8 +34,8 @@ spec:
           env:
           - name: TZ
             value: "America/Detroit"
-        securityContext:
-          privileged: true
+          securityContext:
+            privileged: true
           resources:
             requests:
               memory: "2Gi"
