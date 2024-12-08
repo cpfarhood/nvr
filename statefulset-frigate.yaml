@@ -70,8 +70,6 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: frigate-config
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
   volumeClaimTemplates:
   - metadata:
       name: media
