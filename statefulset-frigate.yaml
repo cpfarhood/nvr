@@ -53,7 +53,7 @@ spec:
             cpu: "6000m"
             gpu.intel.com/i915: 1
 ## For local coral tpu
-            squat.ai/coral: 1
+#            squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 5000
