@@ -39,10 +39,10 @@ spec:
           resources:
             requests:
               memory: "2Gi"
-              cpu: "1500m"
+              cpu: "1000m"
             limits:
               memory: "4Gi"
-              cpu: "2000m"
+              cpu: "1500m"
               gpu.intel.com/i915: 1
           ports:
           - name: "http-32168"
@@ -97,7 +97,7 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 75
+          averageUtilization: 66
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
