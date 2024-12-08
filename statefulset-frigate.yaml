@@ -76,9 +76,14 @@ spec:
           items:
           - key: config.yml               # Key in the ConfigMap to mount
             path: config.yml              # Path to be used inside the container
-      - name: media
-        nfs:
-          path: /mnt/pool0/frigate
-          server: truenas.farhoodliquor.dmz
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
+  volumeClaimTemplates:
+  - metadata:
+      name: media
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 256Gi
