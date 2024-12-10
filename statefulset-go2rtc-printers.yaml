@@ -4,6 +4,8 @@ metadata:
   name: printers
   labels:
     app.kubernetes.io/name: printers
+  annotations:
+    k8s.v1.cni.cncf.io/networks: macvlan-whereabouts@eno1
 spec:
   selector:
     matchLabels:
