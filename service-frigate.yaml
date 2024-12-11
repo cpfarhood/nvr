@@ -4,8 +4,6 @@ metadata:
   name: frigate
   labels:
     app.kubernetes.io/name: frigate
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: "frigate"
 spec:
   selector:
     app.kubernetes.io/name: frigate

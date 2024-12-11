@@ -6,8 +6,6 @@ metadata:
   name: firstfloor
   labels:
     app.kubernetes.io/name: firstfloor
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: "frigate"
 spec:
   selector:
     app.kubernetes.io/name: firstfloor
