@@ -23,11 +23,11 @@ data:
         - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1024#audio=copy
       Garage_Camera_1:
-        - ffmpeg:input=onvif://frigate:frigate1577@172.20.249.124#hardware#video&audio=copy
+        - input=onvif://frigate:frigate1577@172.20.249.124
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Office_Camera_1:
-        - onvif://frigate:frigate1577@172.20.248.53
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.53/cam/realmonitor?channel=1&subtype=0#hardware#video&audio=copy
         - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_1:
