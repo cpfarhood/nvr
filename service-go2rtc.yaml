@@ -3,12 +3,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: basement
+  name: go2rtc
   labels:
-    app.kubernetes.io/name: basement
+    app.kubernetes.io/name: go2rtc
 spec:
   selector:
-    app.kubernetes.io/name: basement
+    app.kubernetes.io/name: go2rtc
   type: LoadBalancer
   externalTrafficPolicy: Local # This must be "Cluster" for ip sharing
   ports:
