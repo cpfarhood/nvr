@@ -27,7 +27,7 @@ spec:
         app.kubernetes.io/name: firstfloor
     spec:
       containers:
-        - name: firstfloor # https://github.com/AlexxIT/firstfloor
+        - name: firstfloor
           image: alexxit/go2rtc:latest-hardware
           imagePullPolicy: Always
           env:
