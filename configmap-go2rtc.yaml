@@ -20,18 +20,30 @@ data:
         - ffmpeg:Exterior_Driveway_Camera#hardware#video=h264#width=1024#audio=copy
       Exterior_Walkway_Gate_Camera:
         - onvif://frigate:frigate1577@172.20.248.186
+        - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1024#audio=copy
       Garage_Camera_1:
         - onvif://frigate:frigate1577@172.20.249.124
+        - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Office_Camera_1:
         - onvif://frigate:frigate1577@172.20.248.53
+        - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_1:
         - onvif://frigate:frigate1577@172.20.248.36
+        - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_2:
         - onvif://frigate:frigate1577@172.20.248.25
+        - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1024#audio=copy
       Basement_3D_Printer_Pinky:
         - rtsp://pinky.farhoodliquor.lan:8554/stream.h264
+        - ffmpeg:Basement_3D_Printer_Pinky#hardware#video=h264#width=1024#audio=copy
       Basement_3D_Printer_TheBrain:
         - rtsp://thebrain.farhoodliquor.lan:8554/stream.h264
+        - ffmpeg:Basement_3D_Printer_TheBrain#hardware#video=h264#width=1024#audio=copy
     candidates:
       - 108.254.166.31:8555
       - stun:8555
