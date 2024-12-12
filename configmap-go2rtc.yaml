@@ -16,6 +16,8 @@ data:
     streams:
       Exterior_Driveway_Camera:
         - onvif://frigate:frigate1577@172.20.248.43
+        - ffmpeg:Exterior_Driveway_Camera#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Exterior_Driveway_Camera#hardware#video=h264#width=1024#audio=copy
       Exterior_Walkway_Gate_Camera:
         - onvif://frigate:frigate1577@172.20.248.186
       Garage_Camera_1:
