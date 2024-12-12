@@ -39,10 +39,10 @@ spec:
             allowPrivilegeEscalation: false
           resources:
             requests:
-              memory: "1024Mi"
+              memory: "2048Mi"
               cpu: "250m"
             limits:
-              memory: "2048Mi"
+              memory: "4096Mi"
               cpu: "1000m"
               gpu.intel.com/i915: 1
           ports:
