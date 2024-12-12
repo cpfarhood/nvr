@@ -26,8 +26,10 @@ data:
         - onvif://frigate:frigate1577@172.20.248.36
       Basement_Mechanical_Camera_2:
         - onvif://frigate:frigate1577@172.20.248.25
-      Basement_3D_Printer_Pinky: ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware#video=copy#audio=copy
-      Basement_3D_Printer_TheBrain: ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video=copy#audio=copy
+      Basement_3D_Printer_Pinky:
+        - rtsp://pinky.farhoodliquor.lan:8554/stream.h264
+      Basement_3D_Printer_TheBrain:
+        - rtsp://thebrain.farhoodliquor.lan:8554/stream.h264
     candidates:
       - 108.254.166.31:8555
       - stun:8555
