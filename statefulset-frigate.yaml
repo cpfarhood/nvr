@@ -73,6 +73,6 @@ spec:
       name: media
     spec:
       accessModes: [ "ReadWriteMany" ]
-      storageClassName: longhorn-emphemeral
+      storageClassName: longhorn-ephemeral
         requests:
           storage: 256Gi
