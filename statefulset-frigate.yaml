@@ -74,5 +74,6 @@ spec:
     spec:
       accessModes: [ "ReadWriteMany" ]
       storageClassName: longhorn-ephemeral
+      resources:
         requests:
           storage: 256Gi
