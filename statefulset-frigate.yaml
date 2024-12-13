@@ -51,7 +51,7 @@ spec:
           limits:
             memory: "4Gi"
             cpu: "6000m"
-            gpu.intel.com/i915: 1
+            gpu.intel.com/i915: 6
             squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:

@@ -44,7 +44,7 @@ spec:
             limits:
               memory: "4096Mi"
               cpu: "2000m"
-              gpu.intel.com/i915: 1
+              gpu.intel.com/i915: 2
           ports:
             - name: "web"
               containerPort: 1984
