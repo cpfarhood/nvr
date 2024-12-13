@@ -30,10 +30,10 @@ data:
         - ffmpeg:rtsp://172.20.248.243:554/stream1#input=rtsp/udp#hardware#video&audio=copy
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1024#audio=copy
-      Basement_Office_Camera_1:
+      Basement_Office_Camera:
         - onvif://frigate:frigate1577@172.20.248.130
-        - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1920#audio=copy
-        - ffmpeg:Basement_Office_Camera_1#hardware#video=h264#width=1024#audio=copy
+        - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_1:
         - onvif://frigate:frigate1577@172.20.248.36
         - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy
