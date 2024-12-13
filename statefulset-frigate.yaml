@@ -1,5 +1,3 @@
-## StatefulSet
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -74,8 +72,7 @@ spec:
   - metadata:
       name: media
     spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: longhorn-perpetual
-      resources:
+      accessModes: [ "ReadWriteMany" ]
+      storageClassName: longhorn-emphemeral
         requests:
           storage: 256Gi
