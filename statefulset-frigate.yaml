@@ -68,12 +68,7 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: frigate-config
-  volumeClaimTemplates:
-  - metadata:
-      name: media
-    spec:
-      accessModes: [ "ReadWriteMany" ]
-      storageClassName: longhorn-ephemeral
-      resources:
-        requests:
-          storage: 256Gi
+      - name: media
+        nfs:
+          server: truenas.farhoodliquor.dmz
+          path: /mnt/pool0/frigate
