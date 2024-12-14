@@ -44,10 +44,10 @@ spec:
           mountPath: "/media/frigate"
         resources:
           requests:
-            memory: "2Gi"
+            memory: "4Gi"
             cpu: "2000m"
           limits:
-            memory: "4Gi"
+            memory: "6Gi"
             cpu: "6000m"
             gpu.intel.com/i915: 6
             squat.ai/coral: 1

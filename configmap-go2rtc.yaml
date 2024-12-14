@@ -27,7 +27,7 @@ data:
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1024#audio=copy
       Mudroom_Hallway_Camera:
-        - ffmpeg:rtsp://172.20.248.243:554/stream1#input=rtsp/udp#hardware#video&audio=copy
+        - ffmpeg:rtsp://172.20.248.243:554/stream1#hardware#video&audio=copy
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1024#audio=copy
       Basement_Office_Camera:
