@@ -21,7 +21,7 @@ spec:
               values:
               - <label-value>
           topologyKey: kubernetes.io/hostname
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: ai-server 
-          image: codeproject/ai-server:2.9.4
+          image: codeproject/ai-server:2.9.5
           imagePullPolicy: Always
           env:
           - name: TZ
@@ -89,7 +89,7 @@ spec:
     apiVersion: apps/v1
     kind: StatefulSet
     name: aiserver
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 3
   metrics:
     - type: Resource
