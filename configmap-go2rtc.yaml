@@ -35,7 +35,7 @@ data:
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_1:
-        - onvif://frigate:frigate1577@172.20.249.176
+        - onvif://frigate:frigate1577@172.20.248.53
         - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy
         - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1024#audio=copy
       Basement_Mechanical_Camera_2:
