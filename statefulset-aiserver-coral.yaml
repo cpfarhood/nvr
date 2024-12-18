@@ -60,10 +60,6 @@ spec:
             httpGet:
               path: /
               port: http-32168
-      volumes:
-      - name: modules
-        emptyDir: 
-          sizeLimit: 16Gi
   volumeClaimTemplates:
   - metadata:
       name: config
@@ -73,14 +69,14 @@ spec:
       resources:
         requests:
           storage: 4Gi
-#  - metadata:
-#      name: modules
-#    spec:
-#      accessModes: [ "ReadWriteOnce" ]
-#      storageClassName: longhorn-perpetual
-#      resources:
-#        requests:
-#          storage: 16Gi
+  - metadata:
+      name: modules
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: longhorn-perpetual
+      resources:
+        requests:
+          storage: 16Gi
 ---
 
 ### Autoscaler
