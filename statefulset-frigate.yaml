@@ -46,13 +46,12 @@ spec:
           mountPath: "/media/frigate"
         resources:
           requests:
-            memory: "3Gi"
-            cpu: "2000m"
+            memory: "4Gi"
+            cpu: "1500m"
           limits:
-            memory: "6Gi"
-            cpu: "4000m"
+            memory: "8Gi"
+            cpu: "6000m"
             gpu.intel.com/i915: 6
-#            squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 5000
