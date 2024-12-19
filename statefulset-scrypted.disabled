@@ -17,8 +17,8 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: scrypted
-        image: ghcr.io/koush/scrypted
-        imagePullPolicy: IfNotPresent
+        image: ghcr.io/koush/scrypted:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 11080
           name: http
