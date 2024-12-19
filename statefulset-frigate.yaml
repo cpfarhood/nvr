@@ -61,10 +61,14 @@ spec:
             periodSeconds: 3
             failureThreshold: 5
       volumes:
-      - name: dshm
+      - name: cache
         emptyDir:
           medium: Memory
           sizeLimit: 8Gi
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
       - name: config
         persistentVolumeClaim:
           claimName: frigate-config
