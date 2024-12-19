@@ -46,11 +46,11 @@ spec:
           mountPath: "/media/frigate"
         resources:
           requests:
-            memory: "4Gi"
-            cpu: "3000m"
+            memory: "3Gi"
+            cpu: "2000m"
           limits:
             memory: "6Gi"
-            cpu: "6000m"
+            cpu: "4000m"
             gpu.intel.com/i915: 6
 #            squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
@@ -66,7 +66,7 @@ spec:
       - name: cache
         emptyDir:
           medium: Memory
-          sizeLimit: 8Gi
+          sizeLimit: 4Gi
       - name: dshm
         emptyDir:
           medium: Memory
