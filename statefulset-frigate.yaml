@@ -36,6 +36,8 @@ spec:
         - name: TZ
           value: America/Detroit
         volumeMounts:
+        - name: cache
+          mountPath: /tmp/cache
         - name: dshm
           mountPath: /dev/shm
         - name: config
