@@ -47,7 +47,7 @@ data:
       Basement_3D_Printer_TheBrain:
         - ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
       Portable_Camera_1:
-        - onvif://frigate:frigate1577@172.20.249.72
+        - onvif://frigate:frigate1577@172.20.248.93
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
       Portable_Camera_2:
