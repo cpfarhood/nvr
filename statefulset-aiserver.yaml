@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: aiserver
+  serviceName: aiserver
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -27,7 +28,6 @@ spec:
       labels:
         app.kubernetes.io/name: aiserver
     spec:
-      serviceName: aiserver
       containers:
         - name: ai-server 
           image: codeproject/ai-server:2.9.5
