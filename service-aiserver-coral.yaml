@@ -9,8 +9,9 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: aiserver-coral
-  type: LoadBalancer
-  externalTrafficPolicy: Local
+  clusterIP: None
+#  type: LoadBalancer
+#  externalTrafficPolicy: Local
   ports:
   - port: 80
     targetPort: 5000

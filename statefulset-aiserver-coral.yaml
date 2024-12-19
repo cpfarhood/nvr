@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: aiserver-coral
+  serviceName: aiserver-coral
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -29,7 +30,7 @@ spec:
     spec:
       containers:
         - name: ai-server 
-          image: codeproject/ai-server:2.9.7
+          image: codeproject/ai-server:2.9.5
           imagePullPolicy: Always
           env:
           - name: TZ
