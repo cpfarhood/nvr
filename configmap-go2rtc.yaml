@@ -34,18 +34,20 @@ data:
         - ffmpeg:rtsp://frigate:frigate1577@172.20.248.130:554/live#hardware#video&audio=copy
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 5
-      Basement_Mechanical_Camera_1:
-        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.36:554/live#hardware#video&audio=copy
-        - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
-        - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
+      Basement_Mechanical_Camera_1-Raw:
+        - onvif://frigate:frigate1577@172.20.248.36
       Basement_Mechanical_Camera_1-Detect:
-        - ffmpeg:rtsp://localhost:8554/Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
-      Basement_Mechanical_Camera_2:
-        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.25:554/live#hardware#video&audio=copy
-        - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
-        - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1024#audio=copy#raw=-r 5
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_1-Raw#hardware#video=h264#width=1920#audio=copy#raw=-r 5
+      Basement_Mechanical_Camera_1:
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_1-Raw#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_1-Raw#hardware#video=h264#width=1024#audio=copy
+      Basement_Mechanical_Camera_2-Raw:
+        - onvif://frigate:frigate1577@172.20.248.25
       Basement_Mechanical_Camera_2-Detect:
-        - ffmpeg:rtsp://localhost:8554/Basement_Mechanical_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_2-Raw#hardware#video=h264#width=1920#audio=copy#raw=-r 5
+      Basement_Mechanical_Camera_2:
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_2-Raw#hardware#video=h264#width=1920#audio=copy
+        - ffmpeg:rtsp://go2rtc:8554/Basement_Mechanical_Camera_2-Raw#hardware#video=h264#width=1024#audio=copy
       Basement_3D_Printer_Pinky:
         - ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
       Basement_3D_Printer_TheBrain:
