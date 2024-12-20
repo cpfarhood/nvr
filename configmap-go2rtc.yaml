@@ -15,15 +15,15 @@ data:
       webrtc: fatal
     streams:
       Exterior_Driveway_Camera:
-        - onvif://frigate:frigate1577@172.20.248.43
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.43:554/live#hardware#video&audio=copy
         - ffmpeg:Exterior_Driveway_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Exterior_Driveway_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Exterior_Walkway_Gate_Camera:
-        - onvif://frigate:frigate1577@172.20.248.186
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.186:554/live#hardware#video&audio=copy
         - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Exterior_Walkway_Gate_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Garage_Camera_1:
-        - onvif://frigate:frigate1577@172.20.249.124
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.249.124:554/live#hardware#video&audio=copy
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Mudroom_Hallway_Camera:
@@ -31,15 +31,15 @@ data:
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Basement_Office_Camera:
-        - onvif://frigate:frigate1577@172.20.248.130
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.130:554/live#hardware#video&audio=copy
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Basement_Office_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Basement_Mechanical_Camera_1:
-        - onvif://frigate:frigate1577@172.20.248.36
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.36:554/live#hardware#video&audio=copy
         - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Basement_Mechanical_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Basement_Mechanical_Camera_2:
-        - onvif://frigate:frigate1577@172.20.248.25
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.25:554/live#hardware#video&audio=copy
         - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
         - ffmpeg:Basement_Mechanical_Camera_2#hardware#video=h264#width=1024#audio=copy#raw=-r 5
       Basement_3D_Printer_Pinky:
@@ -47,11 +47,11 @@ data:
       Basement_3D_Printer_TheBrain:
         - ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
       Portable_Camera_1:
-        - onvif://frigate:frigate1577@172.20.248.93
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.93:554/live#hardware#video&audio=copy
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
       Portable_Camera_2:
-        - onvif://frigate:frigate1577@172.20.248.53
+        - ffmpeg:rtsp://frigate:frigate1577@172.20.248.53:554/live#hardware#video&audio=copy
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
     webrtc:
