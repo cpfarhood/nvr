@@ -51,7 +51,7 @@ data:
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 5
       Portable_Camera_2:
-        - onvif://frigate:frigate1577@172.20.249.176
+        - onvif://frigate:frigate1577@172.20.248.53
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
     webrtc:
