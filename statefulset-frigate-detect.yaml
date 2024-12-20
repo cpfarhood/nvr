@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frigate-detect
-        image: ghcr.io/blakeblackshear/frigate:15.0-beta3
+        image: ghcr.io/blakeblackshear/frigate:stable
         imagePullPolicy: Always
         securityContext:
           privileged: true
