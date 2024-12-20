@@ -55,6 +55,8 @@ data:
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1024#audio=copy#raw=-r 5
         - ffmpeg:Portable_Camera_2#hardware#video=h264#width=1920#audio=copy#raw=-r 5
     webrtc:
+      listen: ":8555"
       candidates:
+        - 172.16.199.10:8555
         - 108.254.166.31:8555
         - stun:8555
