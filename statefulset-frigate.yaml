@@ -76,7 +76,7 @@ spec:
       name: config
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: rook-ceph-perpetual
+      storageClassName: ceph-block
       resources:
         requests:
           storage: 4Gi
@@ -84,7 +84,7 @@ spec:
       name: media
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: rook-ceph-perpetual
+      storageClassName: ceph-block
       resources:
         requests:
           storage: 1Ti
