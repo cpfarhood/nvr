@@ -31,7 +31,7 @@ data:
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1920#audio=copy#raw=-r 12
         - ffmpeg:Garage_Camera_1#hardware#video=h264#width=1024#audio=copy#raw=-r 12
       Mudroom_Hallway_Camera:
-        - rtsp://frigate:frigate1577@172.20.248.243:554/stream1
+        - ffmpeg:rtsp://172.20.248.243:554/stream1#hardware#video&audio=copy
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1920#audio=copy#raw=-r 12
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1024#audio=copy#raw=-r 12
       Foyer_Hallway_Camera:
