@@ -1,6 +1,6 @@
 ## StatefulSet
 apiVersion: apps/v1
-kind: StatefulSet
+kind: DaemonSet
 metadata:
   name: aiserver-coral
   labels:
@@ -22,7 +22,7 @@ spec:
               values:
               - <label-value>
           topologyKey: kubernetes.io/hostname
-  replicas: 2
+#  replicas: 2
   template:
     metadata:
       labels:
@@ -61,25 +61,32 @@ spec:
             httpGet:
               path: /
               port: http-32168
-  volumeClaimTemplates:
-  - metadata:
-      name: config
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: longhorn-perpetual
-      resources:
-        requests:
-          storage: 4Gi
-  - metadata:
-      name: modules
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: longhorn-perpetual
-      resources:
-        requests:
-          storage: 16Gi
----
-
+      volumes:
+      - name: config
+        hostPath:
+          path: "/etc/codeproject/ai"
+      - name: modules
+        emptyDir: {}
+        
+#  volumeClaimTemplates:
+#  - metadata:
+#      name: config
+#    spec:
+#      accessModes: [ "ReadWriteOnce" ]
+#      storageClassName: longhorn-perpetual
+#      resources:
+#        requests:
+#          storage: 4Gi
+#  - metadata:
+#      name: modules
+#    spec:
+#      accessModes: [ "ReadWriteOnce" ]
+#      storageClassName: longhorn-perpetual
+#      resources:
+#        requests:
+#          storage: 16Gi
+#---
+#
 ### Autoscaler
 #apiVersion: autoscaling/v2
 #kind: HorizontalPodAutoscaler
