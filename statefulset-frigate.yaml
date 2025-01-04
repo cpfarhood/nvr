@@ -71,6 +71,10 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: 1Gi
+      - name: media
+        nfs:
+          server: truenas.farhoodliquor.dmz
+          path: /mnt/pool0/frigate
   volumeClaimTemplates:
   - metadata:
       name: config
@@ -80,11 +84,3 @@ spec:
       resources:
         requests:
           storage: 4Gi
-  - metadata:
-      name: media
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: longhorn-perpetual
-      resources:
-        requests:
-          storage: 1Ti
