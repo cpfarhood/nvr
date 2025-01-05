@@ -38,7 +38,7 @@ data:
         - ffmpeg:Mudroom_Hallway_Camera#hardware#video=h264#width=1920#audio=copy
       Foyer_Hallway_Camera_Raw:
         - onvif://172.20.248.108:8088
-      Foyer_Hallway_Camera
+      Foyer_Hallway_Camera:
         - ffmpeg:Foyer_Hallway_Camera_Raw#hardware#video&audio=copy
       Foyer_Hallway_Camera_Detect:
         - ffmpeg:Foyer_Hallway_Camera#hardware#video=h264#width=1024#audio=copy
