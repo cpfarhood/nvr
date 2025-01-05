@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: ai-server 
-          image: codeproject/ai-server:2.9.5
+          image: codeproject/ai-server:2.9.7
           imagePullPolicy: Always
           env:
           - name: TZ
