@@ -74,7 +74,7 @@ spec:
           sizeLimit: 1Gi
       - name: media
         nfs:
-          server: spielberg.dmz.farh.net
+          server: truenas.dmz.farh.net
           path: /mnt/pool0/frigate
   volumeClaimTemplates:
   - metadata:
