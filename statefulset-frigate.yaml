@@ -52,7 +52,8 @@ spec:
             memory: "8Gi"
             cpu: "6000m"
             gpu.intel.com/i915: 6
-            squat.ai/coral: 1
+## For local Corl TPU
+#            squat.ai/coral: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 5000
@@ -73,7 +74,7 @@ spec:
           sizeLimit: 1Gi
       - name: media
         nfs:
-          server: truenas.farhoodliquor.dmz
+          server: spielberg.dmz.farh.net
           path: /mnt/pool0/frigate
   volumeClaimTemplates:
   - metadata:
