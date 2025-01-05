@@ -26,7 +26,6 @@ spec:
       labels:
         app.kubernetes.io/name: aiserver-coral
     spec:
-      hostNetwork: true
       containers:
         - name: ai-server 
           image: codeproject/ai-server:2.9.5
@@ -67,3 +66,48 @@ spec:
       - name: modules
         hostPath:
           path: "/app/modules"
+        
+#  volumeClaimTemplates:
+#  - metadata:
+#      name: config
+#    spec:
+#      accessModes: [ "ReadWriteOnce" ]
+#      storageClassName: longhorn-perpetual
+#      resources:
+#        requests:
+#          storage: 4Gi
+#  - metadata:
+#      name: modules
+#    spec:
+#      accessModes: [ "ReadWriteOnce" ]
+#      storageClassName: longhorn-perpetual
+#      resources:
+#        requests:
+#          storage: 16Gi
+#---
+#
+### Autoscaler
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: aiserver-coral
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: StatefulSet
+#    name: aiserver-coral
+#  minReplicas: 2
+#  maxReplicas: 3
+#  metrics:
+#    - type: Resource
+#      resource:
+#        name: cpu
+#        target:
+#          type: Utilization
+#          averageUtilization: 75
+#  behavior:
+#    scaleDown:
+#      stabilizationWindowSeconds: 300
+#    scaleUp:
+#      stabilizationWindowSeconds: 60
+---
