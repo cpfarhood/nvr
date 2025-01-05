@@ -66,7 +66,8 @@ spec:
         hostPath:
           path: "/etc/codeproject/ai"
       - name: modules
-        emptyDir: {}
+        hostPath:
+          path: "/app/modules"
         
 #  volumeClaimTemplates:
 #  - metadata:
