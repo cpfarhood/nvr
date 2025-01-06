@@ -53,7 +53,7 @@ spec:
           limits:
             memory: "8Gi"
             cpu: "4000m"
-            gpu.intel.com/i915: 1
+            gpu.intel.com/i915: 3
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 5000
@@ -67,11 +67,11 @@ spec:
       - name: cache
         emptyDir:
           medium: Memory
-          sizeLimit: 2Gi
+          sizeLimit: 1024Mi
       - name: dshm
         emptyDir:
           medium: Memory
-          sizeLimit: 1Gi
+          sizeLimit: 512Mi
       - name: media
         nfs:
           server: truenas.dmz.farh.net

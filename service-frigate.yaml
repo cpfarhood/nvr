@@ -8,7 +8,6 @@ spec:
   selector:
     app.kubernetes.io/name: frigate
   type: LoadBalancer
-  loadBalancerIP: 172.16.199.20
   externalTrafficPolicy: Local  # This must be "Cluster" for ip sharing
   ports:
   - port: 8971
@@ -17,6 +16,9 @@ spec:
   - port: 5000
     targetPort: 5000
     name: http-5000
+  - port: 1984
+    targetPort: 1984
+    name: http-1984
   - port: 8554
     targetPort: 8554
     name: rtsp
