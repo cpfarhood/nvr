@@ -75,7 +75,7 @@ spec:
           sizeLimit: 512Mi
       - name: media
         nfs:
-          server: truenas.dmz.farh.net
+          server: spielberg.dmz.farh.net
           path: /mnt/pool0/frigate/exterior
   volumeClaimTemplates:
   - metadata:
