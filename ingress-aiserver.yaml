@@ -7,13 +7,13 @@ metadata:
 spec:
   ingressClassName: traefik-internal
   rules:
-  - host: aiserver-coral.animaniacs.k8s
+  - host: aiserver.animaniacs.k8s
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name:  aiserver-coral
+            name:  aiserver
             port:
               number: 32168
