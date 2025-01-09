@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: frigate
-  namespace: frigate
+  name: frigate-testing
+  namespace: frigate-testing
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: frigate
-  serviceName: "frigate"
+      app.kubernetes.io/name: frigate-testing
+  serviceName: "frigate-testing"
   replicas: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: frigate
+        app.kubernetes.io/name: frigate-testing
     spec:
       containers:
       - name: frigate
-        image: ghcr.io/blakeblackshear/frigate:latest
+        image: ghcr.io/blakeblackshear/frigate:stable
         imagePullPolicy: Always
         securityContext:
           privileged: true
@@ -45,14 +45,15 @@ spec:
         - name: config
           mountPath: "/config"
         - name: media
-          mountPath: "/media/frigate"
+          mountPath: "/media/frigate-testing"
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1000m"
-          limits:
             memory: "4Gi"
-            cpu: "2000m"
+            cpu: "3000m"
+          limits:
+            memory: "8Gi"
+            cpu: "6000m"
+#            squat.ai/coral: 1
             gpu.intel.com/i915: 3
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
@@ -67,11 +68,15 @@ spec:
       - name: cache
         emptyDir:
           medium: Memory
-          sizeLimit: 256Mi
+          sizeLimit: 1024Mi
       - name: dshm
         emptyDir:
           medium: Memory
-          sizeLimit: 128Mi
+          sizeLimit: 512Mi
+      - name: media
+        nfs:
+          server: spielberg.dmz.farh.net
+          path: /mnt/pool0/frigate/interior
   volumeClaimTemplates:
   - metadata:
       name: config
