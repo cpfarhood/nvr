@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frigate
-        image: ghcr.io/blakeblackshear/frigate:stable
+        image: ghcr.io/blakeblackshear/frigate:v0.15.0-beta4
         imagePullPolicy: Always
         securityContext:
           privileged: true
@@ -48,13 +48,13 @@ spec:
           mountPath: "/media/frigate-testing"
         resources:
           requests:
-            memory: "4Gi"
-            cpu: "3000m"
+            memory: "2Gi"
+            cpu: "1000m"
           limits:
-            memory: "8Gi"
-            cpu: "6000m"
+            memory: "4Gi"
+            cpu: "2000m"
 #            squat.ai/coral: 1
-            gpu.intel.com/i915: 3
+            gpu.intel.com/i915: 1
         readinessProbe:                # Check that the http server is responding to ensure the container is up
           tcpSocket:
             port: 5000
