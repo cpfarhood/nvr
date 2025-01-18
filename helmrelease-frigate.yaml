@@ -1,0 +1,128 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: frigate
+  namespace: nvr
+spec:
+  chart:
+    spec:
+      chart: frigate
+      version: 7.6.x
+      sourceRef:
+        kind: HelmRepository
+        name: blakeshome-charts
+        namespace: nvr
+  interval: 15m
+  timeout: 14m
+  releaseName: frigate
+  values:
+    shmSize: 128Mi
+    tmpfs:
+      enabled: true
+      sizeLimit: 256Mi
+    config: |
+      tls:
+        enabled: false
+      mqtt:
+        enabled: true
+        host: homeassistant.farhoodliquor.lan
+        user: frigate
+        password: frigate1577
+      ffmpeg:
+        hwaccel_args: preset-vaapi
+      detectors:
+        cpai:
+          api_url: http://aiserver:32168/v1/vision/detection
+          type: deepstack
+          api_timeout: 0.5
+        ov:
+          type: openvino
+          device: GPU
+      model:
+        width: 300
+        height: 300
+        input_tensor: nhwc
+        input_pixel_format: bgr
+        path: /openvino-model/ssdlite_mobilenet_v2.xml
+        labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+      detect:
+        enabled: true
+        min_initialized: 2
+      objects:
+        track:
+          - person
+      motion:
+        enabled: true
+      snapshots:
+        enabled: true
+        clean_copy: true
+        timestamp: true
+        retain:
+          default: 2
+          objects:
+            person: 7
+      record:
+        enabled: true
+        retain:
+          days: 1
+          mode: all
+        events:
+          retain:
+            default: 30
+            mode: active_objects
+      cameras:
+        Basement_3D_Printer_Pinky:
+          webui_url: https://pinky.farhoodliquor.com
+          ui:
+            order: 501
+            dashboard: true
+          detect:
+            enabled: false
+          audio:
+            enabled: false
+          ffmpeg:
+            inputs:
+              - path: rtsp://localhost:8554/Basement_3D_Printer_Pinky
+                roles:
+                  - detect
+                  - record
+          live:
+            stream_name: Basement_3D_Printer_Pinky
+          zones: {}
+        Basement_3D_Printer_TheBrain:
+          webui_url: https://thebrain.farhoodliquor.com
+          ui:
+            order: 502
+            dashboard: true
+          detect:
+            enabled: false
+          audio:
+            enabled: false
+          ffmpeg:
+            inputs:
+              - path: rtsp://localhost:8554/Basement_3D_Printer_TheBrain
+                roles:
+                  - record
+                  - detect
+          live:
+            stream_name: Basement_3D_Printer_TheBrain
+          zones: {}
+      go2rtc:
+        streams:
+          Basement_3D_Printer_Pinky:
+            - ffmpeg:rtsp://pinky.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
+          Basement_3D_Printer_TheBrain:
+            - ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
+        webrtc:
+          candidates:
+            - frigate.nvr.animaniacs.k8s:8555
+            - stun:8555
+    service:
+      type: LoadBalancer
+#    media:
+#      enabled: false
+#      storageClass: "-"
+#      existingClaim: your-claim
+#      accessMode: ReadWriteOnce
+#      size: 10Gi
+#      skipuninstall: false
