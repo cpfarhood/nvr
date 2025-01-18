@@ -33,6 +33,8 @@ spec:
       sizeLimit: 1024Mi
     service:
       type: LoadBalancer
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: frigate-interior.animaniacs.farh.net
     persistence:
       config:
         enabled: true
