@@ -31,6 +31,21 @@ spec:
     tmpfs:
       enabled: true
       sizeLimit: 256Mi
+    service:
+      type: LoadBalancer
+    persistence:
+      config:
+        enabled: true
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        skipuninstall: false
+      media:
+        enabled: true
+        storageClass: "ceph-filesystem"
+        accessMode: ReadWriteMany
+        size: 256Gi
+        skipuninstall: false
     config: |
       tls:
         enabled: false
@@ -46,6 +61,16 @@ spec:
           api_url: http://aiserver:32168/v1/vision/detection
           type: deepstack
           api_timeout: 0.5
+        ov:
+          type: openvino
+          device: GPU
+      model:
+        width: 300
+        height: 300
+        input_tensor: nhwc
+        input_pixel_format: bgr
+        path: /openvino-model/ssdlite_mobilenet_v2.xml
+        labelmap_path: /openvino-model/coco_91cl_bkgr.txt
       detect:
         enabled: true
         min_initialized: 2
@@ -118,19 +143,3 @@ spec:
           candidates:
             - frigate.nvr.animaniacs.farh.net:8555
             - stun:8555
-    service:
-      type: LoadBalancer
-    persistence:
-      config:
-        enabled: true
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        skipuninstall: false
-      media:
-        enabled: true
-        existingClaim: frigate-media
-        storageClass: "ceph-filesystem"
-        accessMode: ReadWriteMany
-        size: 256Gi
-        skipuninstall: false
