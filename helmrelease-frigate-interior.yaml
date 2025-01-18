@@ -40,13 +40,14 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         skipuninstall: false
-      media:
-        enabled: true
-        existingClaim: frigate-interior-media
-        storageClass: "nfs"
-        accessMode: ReadWriteOnce
-        size: 256Gi
-        skipuninstall: false
+    extraVolumes:
+    - name: media
+      nfs:
+        server: spielberg.dmz.farh.net
+        path: /mnt/pool0/frigate/interior
+    extraVolumeMounts:
+    - name: media
+      mountPath: "/media"
     config: |
       tls:
         enabled: false
