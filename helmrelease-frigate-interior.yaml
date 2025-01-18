@@ -41,12 +41,12 @@ spec:
         size: 1Gi
         skipuninstall: false
     extraVolumes:
-    - name: media
+    - name: nfs-media
       nfs:
         server: spielberg.dmz.farh.net
         path: /mnt/pool0/frigate/interior
     extraVolumeMounts:
-    - name: media
+    - name: nfs-media
       mountPath: "/media"
     config: |
       tls:
