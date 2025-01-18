@@ -127,10 +127,10 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         skipuninstall: false
-#    media:
-#      enabled: false
-#      storageClass: "-"
-#      existingClaim: your-claim
-#      accessMode: ReadWriteOnce
-#      size: 10Gi
-#      skipuninstall: false
+      media:
+        enabled: true
+        existingClaim: frigate-media
+        storageClass: "ceph-filesystem"
+        accessMode: ReadWriteMany
+        size: 256Gi
+        skipuninstall: false
