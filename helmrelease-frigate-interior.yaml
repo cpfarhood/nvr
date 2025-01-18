@@ -47,7 +47,7 @@ spec:
         path: /mnt/pool0/frigate/interior
     extraVolumeMounts:
     - name: nfs-media
-      mountPath: "/media"
+      mountPath: "/media/frigate"
     config: |
       tls:
         enabled: false
