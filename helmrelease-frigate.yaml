@@ -105,7 +105,7 @@ spec:
             - ffmpeg:rtsp://thebrain.farhoodliquor.lan:8554/stream.h264#hardware#video&audio=copy
         webrtc:
           candidates:
-            - frigate.nvr.animaniacs.k8s:8555
+            - frigate.nvr.animaniacs.farh.net:8555
             - stun:8555
     service:
       type: LoadBalancer
