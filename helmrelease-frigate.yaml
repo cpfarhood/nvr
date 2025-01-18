@@ -120,6 +120,12 @@ spec:
             - stun:8555
     service:
       type: LoadBalancer
+    config:
+      enabled: true
+      storageClass: ceph-block
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      skipuninstall: false
 #    media:
 #      enabled: false
 #      storageClass: "-"
