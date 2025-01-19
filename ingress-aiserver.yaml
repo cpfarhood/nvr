@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: traefik-internal
   rules:
-  - host: aiserver.animaniacs.k8s
+  - host: aiserver.animaniacs.farh.net
     http:
       paths:
       - path: /
