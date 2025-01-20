@@ -55,7 +55,7 @@ spec:
         enabled: false
       mqtt:
         enabled: true
-        host: homeassistant.farhoodliquor.lan
+        host: hass.lan.farh.net
         client_id: frigate-interior
         topic_prefix: frigate-interior
         user: frigate-interior

@@ -53,7 +53,7 @@ spec:
         enabled: false
       mqtt:
         enabled: true
-        host: homeassistant.farhoodliquor.lan
+        host: hass.lan.farh.net
         user: frigate
         password: frigate1577
       ffmpeg:
