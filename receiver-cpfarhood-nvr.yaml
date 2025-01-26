@@ -10,7 +10,7 @@ spec:
     - "ping"
     - "push"
   secretRef:
-    name: webhook-token-nvr
+    name: webhook-token
   resources:
     - kind: GitRepository
       name: cpfarhood-nvr
