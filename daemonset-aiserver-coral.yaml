@@ -49,11 +49,8 @@ spec:
             - name: "http-32168"
               containerPort: 32168
           volumeMounts:
-            - name: modulesettings
-              mountPath: "/etc/codeproject/ai/modulesettings.json"
-              subPath: modulesettings.json
-#            - name: config
-#              mountPath: "/etc/codeproject/ai"
+            - name: config
+              mountPath: "/etc/codeproject/ai"
             - name: modules
               mountPath: "/app/modules"
           readinessProbe:
@@ -65,12 +62,9 @@ spec:
               path: /
               port: http-32168
       volumes:
-        - name: modulesettings
-          configMap:
-            name: aiserver-coral-config
-#        - name: config
-#          hostPath:
-#            path: "/etc/codeproject/ai"
+        - name: config
+          hostPath:
+            path: "/etc/codeproject/ai"
         - name: modules
           hostPath:
             path: "/app/modules"
