@@ -4,39 +4,37 @@ metadata:
   name: aiserver-coral
   labels:
     app.kubernetes.io/name: aiserver
-    spec:
-      priorityClassName: system-node-critical
-      nodeSelector:
-        coral.ai/tpu: "true"
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: aiserver
-  serviceName: aiserver
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-           matchExpressions:
-            - key: <label-key>
-              operator: In
-              values:
-              - <label-value>
-          topologyKey: kubernetes.io/hostname
   template:
     metadata:
       labels:
         app.kubernetes.io/name: aiserver
     spec:
+      nodeSelector:
+        coral.ai/tpu: "true" # Ensures scheduling only on labeled nodes
+      priorityClassName: system-node-critical
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - aiserver
+              topologyKey: kubernetes.io/hostname
       containers:
-        - name: ai-server 
+        - name: ai-server
           image: codeproject/ai-server:2.9.7
           imagePullPolicy: Always
           env:
-          - name: TZ
-            value: "America/Detroit"
+            - name: TZ
+              value: "America/Detroit"
           securityContext:
             allowPrivilegeEscalation: false
           resources:
@@ -48,13 +46,13 @@ spec:
               cpu: "1000m"
               coral.ai/tpu: 1
           ports:
-          - name: "http-32168"
-            containerPort: 32168
+            - name: "http-32168"
+              containerPort: 32168
           volumeMounts:
-          - name: config
-            mountPath: "/etc/codeproject/ai"
-          - name: modules
-            mountPath: "/app/modules"
+            - name: config
+              mountPath: "/etc/codeproject/ai"
+            - name: modules
+              mountPath: "/app/modules"
           readinessProbe:
             httpGet:
               path: /
@@ -64,54 +62,9 @@ spec:
               path: /
               port: http-32168
       volumes:
-      - name: config
-        hostPath:
-          path: "/etc/codeproject/ai"
-      - name: modules
-        hostPath:
-          path: "/app/modules"
-        
-#  volumeClaimTemplates:
-#  - metadata:
-#      name: config
-#    spec:
-#      accessModes: [ "ReadWriteOnce" ]
-#      storageClassName: longhorn-perpetual
-#      resources:
-#        requests:
-#          storage: 4Gi
-#  - metadata:
-#      name: modules
-#    spec:
-#      accessModes: [ "ReadWriteOnce" ]
-#      storageClassName: longhorn-perpetual
-#      resources:
-#        requests:
-#          storage: 16Gi
-#---
-#
-### Autoscaler
-#apiVersion: autoscaling/v2
-#kind: HorizontalPodAutoscaler
-#metadata:
-#  name: aiserver-coral
-#spec:
-#  scaleTargetRef:
-#    apiVersion: apps/v1
-#    kind: StatefulSet
-#    name: aiserver-coral
-#  minReplicas: 2
-#  maxReplicas: 3
-#  metrics:
-#    - type: Resource
-#      resource:
-#        name: cpu
-#        target:
-#          type: Utilization
-#          averageUtilization: 75
-#  behavior:
-#    scaleDown:
-#      stabilizationWindowSeconds: 300
-#    scaleUp:
-#      stabilizationWindowSeconds: 60
----
+        - name: config
+          hostPath:
+            path: "/etc/codeproject/ai"
+        - name: modules
+          hostPath:
+            path: "/app/modules"
