@@ -4,6 +4,10 @@ metadata:
   name: aiserver-coral
   labels:
     app.kubernetes.io/name: aiserver
+    spec:
+      priorityClassName: system-node-critical
+      nodeSelector:
+        coral.ai/tpu: "true"
 spec:
   selector:
     matchLabels:
