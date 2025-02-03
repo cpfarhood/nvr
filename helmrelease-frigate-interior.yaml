@@ -37,14 +37,14 @@ spec:
       enabled: true
       ingressClassName: traefik-external
       hosts:
-        - host: frigate-internal.farh.net
+        - host: frigate-interior.farh.net
           paths:
             - path: '/'
               portName: http-auth
       tls:
         - secretName: farh-net-cert-letsencrypt
           hosts:
-            - frigate-internal.farh.net
+            - frigate-interior.farh.net
     persistence:
       config:
         enabled: true
