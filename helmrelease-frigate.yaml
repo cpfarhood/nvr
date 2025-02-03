@@ -35,6 +35,8 @@ spec:
       type: LoadBalancer
       annotations:
         external-dns.alpha.kubernetes.io/hostname: frigate.animaniacs.farh.net
+      labels:
+        app.kubernetes.io/name: frigate
     persistence:
       config:
         enabled: true

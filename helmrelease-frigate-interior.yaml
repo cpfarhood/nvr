@@ -33,18 +33,23 @@ spec:
       sizeLimit: 1024Mi
     service:
       type: LoadBalancer
-    ingress:
-      enabled: true
-      ingressClassName: traefik-external
-      hosts:
-        - host: frigate-interior.farh.net
-          paths:
-            - path: '/'
-              portName: http-auth
-      tls:
-        - secretName: farh-net-cert-letsencrypt
-          hosts:
-            - frigate-interior.farh.net
+      port: 5000
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: frigate-interior.animaniacs.farh.net
+      labels:
+        app.kubernetes.io/name: frigate-interior
+#    ingress:
+#      enabled: true
+#      ingressClassName: traefik-external
+#      hosts:
+#        - host: frigate-interior.farh.net
+#          paths:
+#            - path: '/'
+#              portName: http-auth
+#      tls:
+#        - secretName: farh-net-cert-letsencrypt
+#          hosts:
+#            - frigate-interior.farh.net
     persistence:
       config:
         enabled: true
