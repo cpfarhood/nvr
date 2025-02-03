@@ -41,7 +41,7 @@ spec:
           paths:
             - path: '/'
               portName: http-auth
-      tls: []
+      tls:
         - secretName: farh-net-cert-letsencrypt
           hosts:
             - frigate-internal.farh.net
