@@ -36,8 +36,6 @@ spec:
       port: 5000
       annotations:
         external-dns.alpha.kubernetes.io/hostname: frigate-interior.animaniacs.farh.net
-      labels:
-        app.kubernetes.io/name: frigate-interior
 #    ingress:
 #      enabled: true
 #      ingressClassName: traefik-external
