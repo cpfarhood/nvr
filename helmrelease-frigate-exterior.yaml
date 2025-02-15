@@ -41,7 +41,7 @@ spec:
       ingressClassName: traefik-internal
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
-      host:
+      hosts:
         - host: frigate-exterior.animaniacs.farh.net
           paths:
             - path: '/'
