@@ -33,21 +33,23 @@ spec:
       sizeLimit: 1024Mi
     service:
       type: LoadBalancer
-      port: 5000
+      externalTrafficPolicy: Local
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: frigate-interior.animaniacs.farh.net
-#    ingress:
-#      enabled: true
-#      ingressClassName: traefik-external
-#      hosts:
-#        - host: frigate-interior.farh.net
-#          paths:
-#            - path: '/'
-#              portName: http-auth
-#      tls:
-#        - secretName: farh-net-cert-letsencrypt
-#          hosts:
-#            - frigate-interior.farh.net
+        service.cilium.io/forwarding-mode: dsr
+    ingress:
+      enabled: true
+      ingressClassName: traefik-internal
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: frigate-interior.animaniacs.farh.net
+          paths:
+            - path: '/'
+              portName: http-auth
+      tls:
+        - secretName: frigate-interior.animaniacs.farh.net-cert
+          hosts:
+            - frigate-interior.animaniacs.farh.net
     persistence:
       config:
         enabled: true
