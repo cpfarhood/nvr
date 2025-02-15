@@ -12,8 +12,8 @@ spec:
         kind: HelmRepository
         name: blakeshome-charts
         namespace: nvr
-  interval: 60m
-  timeout: 30m
+  interval: 1h
+  timeout: 15m
   releaseName: frigate-interior
   values:
     resources:

@@ -12,8 +12,8 @@ spec:
         kind: HelmRepository
         name: blakeshome-charts
         namespace: nvr
-  interval: 15m
-  timeout: 14m
+  interval: 1h
+  timeout: 15m
   releaseName: frigate
   values:
     resources:
@@ -33,10 +33,23 @@ spec:
       sizeLimit: 256Mi
     service:
       type: LoadBalancer
+      externalTrafficPolicy: Local
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: frigate.animaniacs.farh.net
-      labels:
-        app.kubernetes.io/name: frigate
+        service.cilium.io/forwarding-mode: dsr
+    ingress:
+      enabled: true
+      ingressClassName: traefik-internal
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: frigate.animaniacs.farh.net
+          paths:
+            - path: '/'
+              portName: http-auth
+      tls:
+        - secretName: frigate.animaniacs.farh.net-cert
+          hosts:
+            - frigate.animaniacs.farh.net
     persistence:
       config:
         enabled: true
