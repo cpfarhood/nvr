@@ -259,7 +259,7 @@ spec:
           Exterior_Driveway_Camera:
             - ffmpeg:rtsp://frigate:frigate1577@172.20.248.44:554/live#hardware#video&audio=copy
           Exterior_Walkway_Gate_Camera:
-            - ffmpeg:rtsp://frigate:frigate1577@172.20.248.186:554/live#hardware#video&audio=copy
+            - ffmpeg:rtsp://frigate:frigate1577@172.20.248.187:554/live#hardware#video&audio=copy
           Garage_Camera_1:
             - ffmpeg:rtsp://frigate:frigate1577@172.20.249.177:554/live#hardware#video&audio=copy
           Garage_Camera_2:
