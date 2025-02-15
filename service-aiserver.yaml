@@ -4,12 +4,14 @@ metadata:
   name: aiserver
   labels:
     app.kubernetes.io/name: aiserver
+  annotations:
+    service.cilium.io/forwarding-mode: dsr
 spec:
   selector:
     app.kubernetes.io/name: aiserver
   type: LoadBalancer
   internalTrafficPolicy: Cluster
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy: Local
   ports:
   - port: 80
     targetPort: 5000
