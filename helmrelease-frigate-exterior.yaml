@@ -60,7 +60,6 @@ spec:
       mqtt:
         enabled: true
         host: mqtt.farh.net
-        port: 8883
         client_id: frigate-exterior
         topic_prefix: frigate-exterior
         user: frigate
