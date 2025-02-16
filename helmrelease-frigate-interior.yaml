@@ -64,6 +64,7 @@ spec:
         topic_prefix: frigate-interior
         user: frigate
         password: frigate1577
+        stats_interval: 15
       detect:
         enabled: true
         min_initialized: 2
