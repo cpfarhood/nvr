@@ -60,10 +60,12 @@ spec:
       mqtt:
         enabled: true
         host: mqtt.farh.net
+        port: 8883
         client_id: frigate-exterior
         topic_prefix: frigate-exterior
         user: frigate
         password: frigate1577
+        stats_interval: 15
       detect:
         enabled: true
         min_initialized: 2
