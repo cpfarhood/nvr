@@ -36,6 +36,7 @@ spec:
       externalTrafficPolicy: Local
       annotations:
         service.cilium.io/forwarding-mode: dsr
+        external-dns.alpha.kubernetes.io/hostname: "frigate-exterior.nvr.farh.net"
     ingress:
       enabled: true
       ingressClassName: traefik-internal
@@ -131,7 +132,7 @@ spec:
             dashboard: true
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Exterior_Driveway_Camera
+              - path: rtsp://frigate-exterior.nvr.farh.net:8554/Exterior_Driveway_Camera
           live:
             stream_name: Exterior_Driveway_Camera
           motion:
@@ -150,7 +151,7 @@ spec:
             dashboard: true
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Exterior_Walkway_Gate_Camera
+              - path: rtsp://frigate-exterior.nvr.farh.net:8554/Exterior_Walkway_Gate_Camera
           live:
             stream_name: Exterior_Walkway_Gate_Camera
           motion:
@@ -178,7 +179,7 @@ spec:
               - yell
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Garage_Camera_1
+              - path: rtsp://frigate-exterior.nvr.farh.net:8554/Garage_Camera_1
                 roles:
                   - detect
                   - record
@@ -222,7 +223,7 @@ spec:
             dashboard: true
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Garage_Camera_2
+              - path: rtsp://frigate-exterior.nvr.farh.net:8554/Garage_Camera_2
           live:
             stream_name: Garage_Camera_2
           onvif:

@@ -36,6 +36,7 @@ spec:
       externalTrafficPolicy: Local
       annotations:
         service.cilium.io/forwarding-mode: dsr
+        external-dns.alpha.kubernetes.io/hostname: "frigate.nvr.farh.net"
     ingress:
       enabled: true
       ingressClassName: traefik-internal

@@ -36,6 +36,7 @@ spec:
       externalTrafficPolicy: Local
       annotations:
         service.cilium.io/forwarding-mode: dsr
+        external-dns.alpha.kubernetes.io/hostname: "frigate-interior.nvr.farh.net"
     ingress:
       enabled: true
       ingressClassName: traefik-internal
@@ -125,7 +126,7 @@ spec:
             order: 103
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Foyer_Hallway_Camera
+              - path: rtsp://frigate-interior.nvr.farh.net:8554/Foyer_Hallway_Camera
           live:
             stream_name: Foyer_Hallway_Camera
         Mudroom_Hallway_Camera:
@@ -134,7 +135,7 @@ spec:
             order: 102
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Mudroom_Hallway_Camera
+              - path: rtsp://frigate-interior.nvr.farh.net:8554/Mudroom_Hallway_Camera
           live:
             stream_name: Mudroom_Hallway_Camera
           zones:
@@ -164,7 +165,7 @@ spec:
               - yell
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Basement_Office_Camera_1
+              - path: rtsp://frigate-interior.nvr.farh.net:8554/Basement_Office_Camera_1
                 roles:
                   - detect
                   - record
@@ -204,7 +205,7 @@ spec:
             dashboard: true
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Basement_Mechanical_Camera_1
+              - path: rtsp://frigate-interior.nvr.farh.net:8554/Basement_Mechanical_Camera_1
           live:
             stream_name: Basement_Mechanical_Camera_1
           zones:
@@ -224,7 +225,7 @@ spec:
             dashboard: true
           ffmpeg:
             inputs:
-              - path: rtsp://localhost:8554/Basement_Mechanical_Camera_2
+              - path: rtsp://frigate-interior.nvr.farh.net:8554/Basement_Mechanical_Camera_2
           live:
             stream_name: Basement_Mechanical_Camera_2
           zones:
