@@ -62,7 +62,7 @@ spec:
         host: mqtt.farh.net
         client_id: frigate-interior
         topic_prefix: frigate-interior
-        user: frigateinterior
+        user: frigate
         password: frigate1577
       detect:
         enabled: true
