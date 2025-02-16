@@ -70,10 +70,10 @@ spec:
         enabled: false
       mqtt:
         enabled: true
-        host: hass.lan.farh.net
+        host: mqtt.farh.net
         client_id: frigate-exterior
         topic_prefix: frigate-exterior
-        user: frigate-exterior
+        user: frigateexterior
         password: frigate1577
       detect:
         enabled: true
