@@ -38,19 +38,7 @@ spec:
         service.cilium.io/forwarding-mode: dsr
         external-dns.alpha.kubernetes.io/hostname: "frigate-interior.nvr.farh.net"
     ingress:
-      enabled: true
-      ingressClassName: traefik-internal
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-      hosts:
-        - host: frigate-interior.animaniacs.farh.net
-          paths:
-            - path: '/'
-              portName: http-auth
-      tls:
-        - secretName: frigate-interior.animaniacs.farh.net-cert
-          hosts:
-            - frigate-interior.animaniacs.farh.net
+      enabled: false
     persistence:
       config:
         enabled: true
