@@ -59,7 +59,7 @@ spec:
         enabled: false
       mqtt:
         enabled: true
-        host: mqtt.farh.net
+        host: mqtt.hass.farh.net
         client_id: frigate-interior
         topic_prefix: frigate-interior
         user: frigate

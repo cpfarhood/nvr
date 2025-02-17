@@ -69,7 +69,7 @@ spec:
         enabled: false
       mqtt:
         enabled: true
-        host: mqtt.farh.net
+        host: mqtt.hass.farh.net
         user: frigate
         password: frigate1577
       ffmpeg:
