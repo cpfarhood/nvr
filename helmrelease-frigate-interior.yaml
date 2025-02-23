@@ -46,14 +46,12 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         skipuninstall: false
-    extraVolumes:
-    - name: nfs-media
-      nfs:
-        server: spielberg.dmz.farh.net
-        path: /mnt/pool0/frigate/interior
-    extraVolumeMounts:
-    - name: nfs-media
-      mountPath: "/media/frigate"
+      media:
+        enabled: true
+        storageClass: ceph-filesystem
+        accessMode: ReadWriteMany
+        size: 256Gi
+        skipuninstall: false
     config: |
       tls:
         enabled: false
