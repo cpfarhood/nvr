@@ -36,9 +36,20 @@ spec:
       externalTrafficPolicy: Local
       annotations:
         service.cilium.io/forwarding-mode: dsr
-        external-dns.alpha.kubernetes.io/hostname: "frigate-exterior.nvr.farh.net"
     ingress:
-      enabled: false
+      enabled: true
+      ingressClassName: traefik-external
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: frigate-exterior.farh.net
+          paths:
+            - path: /
+              portName: http-auth
+      tls:
+        - secretName: frigate-exterior-tls
+          hosts:
+            - frigate-exterior.farh.net
     persistence:
       config:
         enabled: true
