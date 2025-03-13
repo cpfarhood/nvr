@@ -59,7 +59,7 @@ spec:
         skipuninstall: false
       media:
         enabled: true
-        storageClass: ceph-filesystem
+        storageClass: ceph-media
         accessMode: ReadWriteMany
         size: 256Gi
         skipuninstall: false
