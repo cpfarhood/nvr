@@ -288,9 +288,9 @@ spec:
           Basement_Mechanical_Camera_2:
             - ffmpeg:rtsp://frigate:frigate1577@172.20.248.120:554/live#hardware#video&audio=copy
           Basement_3D_Printer_Pinky:
-            - ffmpeg:rtsp://pinky.lan.farh.net:8554/stream.h264#hardware#video&audio=copy
+            - ffmpeg:rtsp://pinky.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
           Basement_3D_Printer_TheBrain:
-            - ffmpeg:rtsp://thebrain.lan.farh.net:8554/stream.h264#hardware#video&audio=copy
+            - ffmpeg:rtsp://thebrain.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
         webrtc:
           candidates:
             - frigate-interior.nvr.animaniacs.farh.net:8555
