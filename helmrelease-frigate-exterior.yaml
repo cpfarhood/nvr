@@ -24,7 +24,6 @@ spec:
         memory: "8Gi"
         cpu: "4000m"
         gpu.intel.com/i915: 1
-        coral.ai/tpu: 1
     securityContext:
       privileged: true
     podAnnotations: {}
@@ -105,17 +104,10 @@ spec:
       ffmpeg:
         hwaccel_args: preset-vaapi
       detectors:
-        coral:
-          type: edgetpu
-          device: pci
-        #cpai-thread1:
-        #  api_url: http://aiserver:32168/v1/vision/detection
-        #  type: deepstack
-        #  api_timeout: 0.5
-        #cpai-thread2:
-        #  api_url: http://aiserver:32168/v1/vision/detection
-        #  type: deepstack
-        #  api_timeout: 0.5
+        cpai:
+          api_url: http://aiserver:32168/v1/vision/detection
+          type: deepstack
+          api_timeout: 0.5
         ov:
           type: openvino
           device: GPU
