@@ -24,9 +24,12 @@ spec:
         memory: "8Gi"
         cpu: "4000m"
         gpu.intel.com/i915: 1
+        coral.ai/tpu: 1
     securityContext:
       privileged: true
     podAnnotations: {}
+    coral:
+      enabled: true
     shmSize: 512Mi
     tmpfs:
       enabled: true
