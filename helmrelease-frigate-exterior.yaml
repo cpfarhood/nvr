@@ -107,14 +107,17 @@ spec:
       ffmpeg:
         hwaccel_args: preset-vaapi
       detectors:
-        cpai-thread1:
-          api_url: http://aiserver:32168/v1/vision/detection
-          type: deepstack
-          api_timeout: 0.5
-        cpai-thread2:
-          api_url: http://aiserver:32168/v1/vision/detection
-          type: deepstack
-          api_timeout: 0.5
+        coral:
+          type: edgetpu
+          device: pci
+        #cpai-thread1:
+        #  api_url: http://aiserver:32168/v1/vision/detection
+        #  type: deepstack
+        #  api_timeout: 0.5
+        #cpai-thread2:
+        #  api_url: http://aiserver:32168/v1/vision/detection
+        #  type: deepstack
+        #  api_timeout: 0.5
         ov:
           type: openvino
           device: GPU
