@@ -28,8 +28,6 @@ spec:
     securityContext:
       privileged: true
     podAnnotations: {}
-    coral:
-      enabled: true
     shmSize: 512Mi
     tmpfs:
       enabled: true
