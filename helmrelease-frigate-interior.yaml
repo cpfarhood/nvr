@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: frigate
-      version: 7.7.x
+      version: 7.8.x
       sourceRef:
         kind: HelmRepository
         name: blakeshome-charts
@@ -99,11 +99,7 @@ spec:
       ffmpeg:
         hwaccel_args: preset-vaapi
       detectors:
-        cpai-thread1:
-          api_url: http://aiserver:32168/v1/vision/detection
-          type: deepstack
-          api_timeout: 0.5
-        cpai-thread2:
+        cpai:
           api_url: http://aiserver:32168/v1/vision/detection
           type: deepstack
           api_timeout: 0.5
