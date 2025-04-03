@@ -22,7 +22,6 @@ spec:
         cpu: "2000m"
       limits:
         memory: "8Gi"
-        cpu: "4000m"
         gpu.intel.com/i915: 1
     securityContext:
       privileged: true
