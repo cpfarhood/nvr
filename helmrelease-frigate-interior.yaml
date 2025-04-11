@@ -62,6 +62,15 @@ spec:
         accessMode: ReadWriteMany
         size: 256Gi
         skipuninstall: false
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: farh.net/intel-gpu-gen
+              operator: Gt
+              values:
+              - "8"
     config: |
       tls:
         enabled: false
