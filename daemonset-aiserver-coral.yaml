@@ -14,7 +14,7 @@ spec:
         app.kubernetes.io/name: aiserver
     spec:
       nodeSelector:
-        coral.ai/tpu: "true" # Ensures scheduling only on labeled nodes
+        node-role.kubernetes.io/tpu: "true" # Ensure this label is added to appropriate nodes
       priorityClassName: system-node-critical
       affinity:
         podAntiAffinity:
