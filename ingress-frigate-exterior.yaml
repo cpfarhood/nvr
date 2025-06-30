@@ -1,0 +1,28 @@
+# Source: frigate/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frigate-exterior
+  labels:
+    app.kubernetes.io/name: frigate
+    app.kubernetes.io/instance: frigate-exterior
+    app.kubernetes.io/version: "0.14.1"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik-external
+  tls:
+    - hosts:
+        - "frigate-exterior.farh.net"
+      secretName: frigate-exterior-tls
+  rules:
+    - host: "frigate-exterior.farh.net"
+      http:
+        paths:
+          - path: /
+            pathType: "ImplementationSpecific"
+            backend:
+              service:
+                name: frigate-exterior
+                port:
+                  name: http-auth
