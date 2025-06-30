@@ -1,0 +1,234 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frigate-interior
+  labels:
+    app.kubernetes.io/name: frigate
+    app.kubernetes.io/instance: frigate-interior
+data:
+  config.yml: |
+    tls:
+      enabled: false
+    mqtt:
+      enabled: true
+      host: mqtt.hass.farh.net
+      client_id: frigate-interior
+      topic_prefix: frigate-interior
+      user: frigate
+      password: frigate1577
+      stats_interval: 15
+    detect:
+      enabled: true
+      min_initialized: 2
+    motion:
+      enabled: true
+    snapshots:
+      enabled: true
+      clean_copy: true
+      timestamp: true
+      retain:
+        default: 2
+        objects:
+          person: 7
+    record:
+      enabled: true
+      retain:
+        days: 1
+        mode: all
+      events:
+        retain:
+          default: 30
+          mode: active_objects
+    ffmpeg:
+      hwaccel_args: preset-vaapi
+    detectors:
+      ov:
+        type: openvino
+        device: GPU
+    model:
+      width: 300
+      height: 300
+      input_tensor: nhwc
+      input_pixel_format: bgr
+      path: /openvino-model/ssdlite_mobilenet_v2.xml
+      labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+    cameras:
+      Foyer_Hallway_Camera:
+        webui_url: http://172.20.248.108/
+        ui:
+          order: 103
+        ffmpeg:
+          inputs:
+            - path: rtsp://frigate-interior:8554/Foyer_Hallway_Camera
+        live:
+          stream_name: Foyer_Hallway_Camera
+      Mudroom_Hallway_Camera:
+        webui_url: http://172.20.248.243/
+        ui:
+          order: 102
+        ffmpeg:
+          inputs:
+            - path: rtsp://frigate-interior:8554/Mudroom_Hallway_Camera
+        live:
+          stream_name: Mudroom_Hallway_Camera
+        zones:
+          Laundry_Room:
+            coordinates: 0.034,0.138,0.086,0.736,0.193,0.672,0.16,0.07
+            loitering_time: 0
+            inertia: 3
+          Mudroom:
+            coordinates: 0.662,0,0.613,1,0.977,0.998,0.998,0.946,1,0.157,0.735,0
+            loitering_time: 0
+            inertia: 3
+        objects:
+          filters:
+            person:
+              mask: 0.425,0.316,0.499,0.372,0.501,0.554,0.43,0.478
+      Basement_Office_Camera_1:
+        webui_url: http://172.20.248.93
+        ui:
+          order: 201
+          dashboard: true
+        audio:
+          enabled: true
+          listen:
+            - bark
+            - fire_alarm
+            - scream
+            - yell
+        ffmpeg:
+          inputs:
+            - path: rtsp://frigate-interior:8554/Basement_Office_Camera_1
+              roles:
+                - detect
+                - record
+                - audio
+        live:
+          stream_name: Basement_Office_Camera_1
+        onvif:
+          host: 172.20.248.93
+          port: 80
+          user: frigate
+          password: frigate1577
+          autotracking:
+            enabled: true
+            calibrate_on_startup: false
+            track:
+              - person
+              - dog
+            required_zones:
+              - Basement_Office
+            return_preset: preset1
+            movement_weights: 0.0, 1.0, 0.09105825424194336, 0.3946110874093987, 0.41458067201798976
+        zones:
+          Basement_Office:
+            coordinates: 0.371,0.368,0.587,0.188,0.626,0.212,0.638,0.003,1,0,1,1,0,1,0,0.605,0.104,0.598
+            loitering_time: 0
+        objects:
+          track:
+            - person
+            - dog
+            - cell phone
+        motion:
+          mask: 0.693,0.035,0.692,0.081,0.961,0.082,0.961,0.037
+      Basement_Mechanical_Camera_1:
+        webui_url: http://172.20.248.36
+        ui:
+          order: 202
+          dashboard: true
+        ffmpeg:
+          inputs:
+            - path: rtsp://frigate-interior:8554/Basement_Mechanical_Camera_1
+        live:
+          stream_name: Basement_Mechanical_Camera_1
+        zones:
+          Basement_Mechanical:
+            coordinates: 0,0,0,1,1,1,1,0
+            inertia: 3
+            loitering_time: 0
+        objects:
+          track:
+            - person
+        motion:
+          mask: 0.647,0.056,0.647,0.109,0.983,0.112,0.981,0.058
+      Basement_Mechanical_Camera_2:
+        webui_url: http://172.20.248.120/
+        ui:
+          order: 203
+          dashboard: true
+        ffmpeg:
+          inputs:
+            - path: rtsp://frigate-interior:8554/Basement_Mechanical_Camera_2
+        live:
+          stream_name: Basement_Mechanical_Camera_2
+        zones:
+          Basement_Mechanical:
+            coordinates: 
+              0.249,1,0,1,0,0.872,0.04,0.956,0.244,0.805,0.195,0.652,0.157,0.536,0.097,0.529,0.07,0.483,0.06,0.431,0.061,0.362,0.106,0.301,0.07,0,0.702,0,1,0,1,1
+            inertia: 3
+            loitering_time: 0
+        objects:
+          track:
+            - person
+        motion:
+          mask:
+            - 0.633,0.92,0.632,0.97,0.976,0.971,0.976,0.921
+            - 0.243,0.802,0.041,0.956,0,0.87,0,0,0.07,0,0.106,0.303,0.084,0.327,0.062,0.36,0.06,0.43,0.069,0.483,0.096,0.529,0.159,0.538
+      Basement_3D_Printer_Pinky:
+        webui_url: https://pinky.farhoodliquor.com
+        ui:
+          order: 501
+          dashboard: true
+        detect:
+          enabled: false
+        audio:
+          enabled: false
+        ffmpeg:
+          inputs:
+            - path: rtsp://localhost:8554/Basement_3D_Printer_Pinky
+              roles:
+                - detect
+                - record
+        live:
+          stream_name: Basement_3D_Printer_Pinky
+        zones: {}
+      Basement_3D_Printer_TheBrain:
+        webui_url: https://thebrain.farhoodliquor.com
+        ui:
+          order: 502
+          dashboard: true
+        detect:
+          enabled: false
+        audio:
+          enabled: false
+        ffmpeg:
+          inputs:
+            - path: rtsp://localhost:8554/Basement_3D_Printer_TheBrain
+              roles:
+                - record
+                - detect
+        live:
+          stream_name: Basement_3D_Printer_TheBrain
+        zones: {}
+    go2rtc:
+      streams:
+        Foyer_Hallway_Camera:
+          - onvif://172.20.248.108:8088
+        Mudroom_Hallway_Camera:
+          - ffmpeg:rtsp://172.20.248.243:554/stream1#hardware#video&audio=copy#raw=-r 20
+        Basement_Office_Camera_1:
+          - ffmpeg:rtsp://frigate:frigate1577@172.20.248.93:554/live#hardware#video&audio=copy
+        Basement_Mechanical_Camera_1:
+          - ffmpeg:rtsp://frigate:frigate1577@172.20.248.130:554/live#hardware#video&audio=copy
+        Basement_Mechanical_Camera_2:
+          - ffmpeg:rtsp://frigate:frigate1577@172.20.248.120:554/live#hardware#video&audio=copy
+        Basement_3D_Printer_Pinky:
+          - ffmpeg:rtsp://pinky.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
+        Basement_3D_Printer_TheBrain:
+          - ffmpeg:rtsp://thebrain.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
+      webrtc:
+        candidates:
+          - frigate-interior.nvr.animaniacs.farh.net:8555
+          - stun:8555
+    version: 0.14

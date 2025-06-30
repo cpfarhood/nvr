@@ -1,0 +1,149 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: frigate-interior
+  labels:
+    app.kubernetes.io/name: frigate
+    app.kubernetes.io/instance: frigate-interior
+    app.kubernetes.io/version: "0.14.1"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: frigate
+      app.kubernetes.io/instance: frigate-interior
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: frigate
+        app.kubernetes.io/instance: frigate-interior
+    spec:
+      initContainers:
+        - name: copyconfig
+          image: "ghcr.io/blakeblackshear/frigate:0.14.1"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /config.yml
+              subPath: config.yml
+              name: configmap
+            - mountPath: /config
+              name: config
+          command: [ "cp" ]
+          args: [ "-v", "/config.yml", "/config/config.yml" ]
+      containers:
+        - name: frigate
+          image: "ghcr.io/blakeblackshear/frigate:0.14.1"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+            - name: http-auth
+              containerPort: 8971
+              protocol: TCP
+            - name: rtmp
+              containerPort: 1935
+              protocol: TCP
+            - name: rtsp
+              containerPort: 8554
+              protocol: TCP
+            - name: webrtc-udp
+              containerPort: 8555
+              protocol: UDP
+            - name: webrtc-tcp
+              containerPort: 8555
+              protocol: TCP
+            - name: go2rtc-admin
+              containerPort: 1984
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            failureThreshold: 5
+            timeoutSeconds: 10
+          env:
+          envFrom:
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+            - mountPath: /media
+              name: media
+            - name: dshm
+              mountPath: /dev/shm
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            limits:
+              gpu.intel.com/i915: 1
+              memory: 8Gi
+            requests:
+              cpu: 2000m
+              memory: 4Gi
+      volumes:
+        - name: configmap
+          configMap:
+            name: frigate-interior
+        - name: data
+          emptyDir: {}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512Mi
+        - name: tmp
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1024Mi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: farh.net/intel-gpu-gen
+                operator: Gt
+                values:
+                - "8"
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - frigate
+              topologyKey: kubernetes.io/hostname
+            weight: 100
+  volumeClaimTemplates:
+  - metadata:
+      name: config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+  - metadata:
+      name: media
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 256Gi
