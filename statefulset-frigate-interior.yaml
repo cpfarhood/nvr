@@ -36,7 +36,7 @@ spec:
 #          args: [ "-v", "/config.yml", "/config/config.yml" ]
       containers:
         - name: frigate
-          image: "ghcr.io/blakeblackshear/frigate:0.14.1"
+          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
