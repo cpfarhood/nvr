@@ -22,18 +22,18 @@ spec:
         app.kubernetes.io/name: frigate
         app.kubernetes.io/instance: frigate-interior
     spec:
-      initContainers:
-        - name: copyconfig
-          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /config.yml
-              subPath: config.yml
-              name: configmap
-            - mountPath: /config
-              name: config
-          command: [ "cp" ]
-          args: [ "-v", "/config.yml", "/config/config.yml" ]
+#      initContainers:
+#        - name: copyconfig
+#          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
+#          imagePullPolicy: IfNotPresent
+#          volumeMounts:
+#            - mountPath: /config.yml
+#              subPath: config.yml
+#              name: configmap
+#            - mountPath: /config
+#              name: config
+#          command: [ "cp" ]
+#          args: [ "-v", "/config.yml", "/config/config.yml" ]
       containers:
         - name: frigate
           image: "ghcr.io/blakeblackshear/frigate:0.14.1"
