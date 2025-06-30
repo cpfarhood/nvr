@@ -16,18 +16,6 @@ spec:
   timeout: 15m
   releaseName: frigate-exterior
   values:
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - frigate-interior
-            topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: "4Gi"
@@ -83,6 +71,17 @@ spec:
               operator: Gt
               values:
               - "8"
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - frigate-interior
+            topologyKey: kubernetes.io/hostname
     config: |
       tls:
         enabled: false
