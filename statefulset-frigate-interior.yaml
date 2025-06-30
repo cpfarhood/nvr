@@ -24,7 +24,7 @@ spec:
     spec:
       initContainers:
         - name: copyconfig
-          image: "ghcr.io/blakeblackshear/frigate:0.14.1"
+          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /config.yml
