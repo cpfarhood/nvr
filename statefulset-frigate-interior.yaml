@@ -27,13 +27,13 @@ spec:
 #          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
 #          imagePullPolicy: IfNotPresent
 #          volumeMounts:
-#            - mountPath: /config.yml
-#              subPath: config.yml
+#            - mountPath: /config.yaml
+#              subPath: config.yaml
 #              name: configmap
 #            - mountPath: /config
 #              name: config
 #          command: [ "cp" ]
-#          args: [ "-v", "/config.yml", "/config/config.yml" ]
+#          args: [ "-v", "/config.yaml", "/config/config.yaml" ]
       containers:
         - name: frigate
           image: "ghcr.io/blakeblackshear/frigate:0.15.1"

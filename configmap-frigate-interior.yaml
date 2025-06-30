@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: frigate
     app.kubernetes.io/instance: frigate-interior
 data:
-  config.yml: |
+  config.yaml: |
     tls:
       enabled: false
     mqtt:
