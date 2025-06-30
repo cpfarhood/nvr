@@ -15,19 +15,19 @@ spec:
   interval: 1h
   timeout: 15m
   releaseName: frigate-exterior
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-              - frigate-interior
-          topologyKey: kubernetes.io/hostname
   values:
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - frigate-interior
+            topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: "4Gi"
