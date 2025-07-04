@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: frigate
     app.kubernetes.io/instance: frigate-interior
-    app.kubernetes.io/version: "0.14.1"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -22,18 +21,18 @@ spec:
         app.kubernetes.io/name: frigate
         app.kubernetes.io/instance: frigate-interior
     spec:
-#      initContainers:
-#        - name: copyconfig
-#          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
-#          imagePullPolicy: IfNotPresent
-#          volumeMounts:
-#            - mountPath: /config.yaml
-#              subPath: config.yaml
-#              name: configmap
-#            - mountPath: /config
-#              name: config
-#          command: [ "cp" ]
-#          args: [ "-v", "/config.yaml", "/config/config.yaml" ]
+      initContainers:
+        - name: copyconfig
+          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /config.yaml
+              subPath: config.yaml
+              name: configmap
+            - mountPath: /config
+              name: config
+          command: [ "cp" ]
+          args: [ "-v", "/config.yaml", "/config/config.yaml" ]
       containers:
         - name: frigate
           image: "ghcr.io/blakeblackshear/frigate:0.15.1"
@@ -117,10 +116,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: farh.net/intel-gpu-gen
-                operator: Gt
+              - key: node-role.kubernetes.io/gpu
+                operator: In
                 values:
-                - "8"
+                - "true"
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:

@@ -6,9 +6,10 @@ metadata:
   labels:
     app.kubernetes.io/name: frigate
     app.kubernetes.io/instance: frigate-interior
-    app.kubernetes.io/version: "0.14.1"
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    external-dns.alpha.kubernetes.io/hostname: "frigate-interior.farh.net"
+    external-dns.alpha.kubernetes.io/target: "108.254.166.31"
 spec:
   ingressClassName: traefik-external
   tls:
