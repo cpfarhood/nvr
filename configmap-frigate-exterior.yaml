@@ -12,7 +12,7 @@ data:
       enabled: false
     mqtt:
       enabled: true
-      host: mqtt.hass.farh.net
+      host: hass-mqtt.animaniacs.farh.net
       client_id: frigate-exterior
       topic_prefix: frigate-exterior
       user: frigate
