@@ -1,7 +1,7 @@
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
-  name: cpfarhood-nvr
+  name: nvr
 spec:
   type: github
   events:
