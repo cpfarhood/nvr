@@ -11,5 +11,5 @@ spec:
     name: webhook-token
   resources:
     - kind: GitRepository
-      name: cpfarhood-nvr
+      name: nvr
       namespace: nvr
