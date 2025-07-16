@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: webhook-token
+type: Opaque
+data:
+  token: YTcyYWQ1NTU4M2VmOWE0ODE1MWM5ZGE2NjQ2ZjczZjAwZGQ4ZjAxYQ==

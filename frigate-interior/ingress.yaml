@@ -12,10 +12,6 @@ metadata:
     external-dns.alpha.kubernetes.io/target: "108.254.166.31"
 spec:
   ingressClassName: traefik-external
-  tls:
-    - hosts:
-        - "frigate-interior.farh.net"
-      secretName: frigate-interior-tls
   rules:
     - host: "frigate-interior.farh.net"
       http:
@@ -27,3 +23,7 @@ spec:
                 name: frigate-interior
                 port:
                   name: http-auth
+  tls:
+    - hosts:
+        - "frigate-interior.farh.net"
+      secretName: frigate-interior-tls

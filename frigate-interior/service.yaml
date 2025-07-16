@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: frigate
     app.kubernetes.io/instance: frigate-interior
-    app.kubernetes.io/version: "0.14.1"
   annotations:
     service.cilium.io/forwarding-mode: dsr
 spec:
