@@ -116,10 +116,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: node-role.kubernetes.io/gpu
+              - key: gpu.intel.com/family
                 operator: In
                 values:
-                - "true"
+                - "A_Series"
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
           - podAffinityTerm:
