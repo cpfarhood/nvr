@@ -64,7 +64,8 @@ data:
           inputs:
             - path: rtsp://frigate-interior:8554/Foyer_Hallway_Camera
         live:
-          stream_name: Foyer_Hallway_Camera
+          streams:
+            Foyer_Hallway_Camera: Foyer_Hallway_Camera
       Mudroom_Hallway_Camera:
         webui_url: http://172.20.248.243/
         ui:
@@ -73,7 +74,8 @@ data:
           inputs:
             - path: rtsp://frigate-interior:8554/Mudroom_Hallway_Camera
         live:
-          stream_name: Mudroom_Hallway_Camera
+          streams:
+            Mudroom_Hallway_Camera: Mudroom_Hallway_Camera
         zones:
           Laundry_Room:
             coordinates: 0.034,0.138,0.086,0.736,0.193,0.672,0.16,0.07
@@ -107,7 +109,8 @@ data:
                 - record
                 - audio
         live:
-          stream_name: Basement_Office_Camera_1
+          streams:
+            Basement_Office_Camera_1: Basement_Office_Camera_1
         onvif:
           host: 172.20.248.93
           port: 80
@@ -122,10 +125,12 @@ data:
             required_zones:
               - Basement_Office
             return_preset: preset1
-            movement_weights: 0.0, 1.0, 0.09105825424194336, 0.3946110874093987, 0.41458067201798976
+            movement_weights: 0.0, 1.0, 0.09105825424194336, 0.3946110874093987, 
+              0.41458067201798976, 0
         zones:
           Basement_Office:
-            coordinates: 0.371,0.368,0.587,0.188,0.626,0.212,0.638,0.003,1,0,1,1,0,1,0,0.605,0.104,0.598
+            coordinates: 
+              0.371,0.368,0.587,0.188,0.626,0.212,0.638,0.003,1,0,1,1,0,1,0,0.605,0.104,0.598
             loitering_time: 0
         objects:
           track:
@@ -143,7 +148,8 @@ data:
           inputs:
             - path: rtsp://frigate-interior:8554/Basement_Mechanical_Camera_1
         live:
-          stream_name: Basement_Mechanical_Camera_1
+          streams:
+            Basement_Mechanical_Camera_1: Basement_Mechanical_Camera_1
         zones:
           Basement_Mechanical:
             coordinates: 0,0,0,1,1,1,1,0
@@ -163,7 +169,8 @@ data:
           inputs:
             - path: rtsp://frigate-interior:8554/Basement_Mechanical_Camera_2
         live:
-          stream_name: Basement_Mechanical_Camera_2
+          streams:
+            Basement_Mechanical_Camera_2: Basement_Mechanical_Camera_2
         zones:
           Basement_Mechanical:
             coordinates: 
@@ -193,7 +200,8 @@ data:
                 - detect
                 - record
         live:
-          stream_name: Basement_3D_Printer_Pinky
+          streams:
+            Basement_3D_Printer_Pinky: Basement_3D_Printer_Pinky
         zones: {}
       Basement_3D_Printer_TheBrain:
         webui_url: https://thebrain.farhoodliquor.com
@@ -211,7 +219,8 @@ data:
                 - record
                 - detect
         live:
-          stream_name: Basement_3D_Printer_TheBrain
+          streams:
+            Basement_3D_Printer_TheBrain: Basement_3D_Printer_TheBrain
         zones: {}
     go2rtc:
       streams:
@@ -228,10 +237,10 @@ data:
           - ffmpeg:rtsp://frigate:frigate1577@172.20.248.120:554/live#hardware#video&audio=copy
         #Basement_3D_Printer_Pinky:
         #  - ffmpeg:rtsp://pinky.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
-        #Basement_3D_Printer_TheBrain:
-        #  - ffmpeg:rtsp://thebrain.lan.farh.net.:8554/stream.h264#hardware#video&audio=copy
+        Basement_3D_Printer_TheBrain:
+          - ffmpeg:rtsp://172.20.248.97:8554/stream.h264#hardware#video&audio=copy
       webrtc:
         candidates:
           - frigate-interior.nvr.animaniacs.farh.net:8555
           - stun:8555
-    version: 0.15-1
+    version: 0.16-0
