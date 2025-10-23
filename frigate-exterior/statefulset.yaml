@@ -23,7 +23,7 @@ spec:
     spec:
       initContainers:
         - name: copyconfig
-          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
+          image: "ghcr.io/blakeblackshear/frigate:0.16.2"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /config.yaml
@@ -35,7 +35,7 @@ spec:
           args: [ "-v", "/config.yaml", "/config/config.yaml" ]
       containers:
         - name: frigate
-          image: "ghcr.io/blakeblackshear/frigate:0.15.1"
+          image: "ghcr.io/blakeblackshear/frigate:0.16.2"
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: true
