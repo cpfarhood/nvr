@@ -56,16 +56,16 @@ data:
       path: /openvino-model/ssdlite_mobilenet_v2.xml
       labelmap_path: /openvino-model/coco_91cl_bkgr.txt
     cameras:
-      Foyer_Hallway_Camera:
-        webui_url: http://172.20.248.108/
-        ui:
-          order: 103
-        ffmpeg:
-          inputs:
-            - path: rtsp://frigate-interior:8554/Foyer_Hallway_Camera
-        live:
-          streams:
-            Foyer_Hallway_Camera: Foyer_Hallway_Camera
+      #Foyer_Hallway_Camera:
+      #  webui_url: http://172.20.248.108/
+      #  ui:
+      #    order: 103
+      # ffmpeg:
+      #    inputs:
+      #     - path: rtsp://frigate-interior:8554/Foyer_Hallway_Camera
+      #  live:
+      #   streams:
+      #      Foyer_Hallway_Camera: Foyer_Hallway_Camera
       Mudroom_Hallway_Camera:
         webui_url: http://172.20.248.243/
         ui:
@@ -184,25 +184,25 @@ data:
           mask:
             - 0.633,0.92,0.632,0.97,0.976,0.971,0.976,0.921
             - 0.243,0.802,0.041,0.956,0,0.87,0,0,0.07,0,0.106,0.303,0.084,0.327,0.062,0.36,0.06,0.43,0.069,0.483,0.096,0.529,0.159,0.538
-      Basement_3D_Printer_Pinky:
-        webui_url: https://pinky.farhoodliquor.com
-        ui:
-          order: 501
-          dashboard: true
-        detect:
-          enabled: false
-        audio:
-          enabled: false
-        ffmpeg:
-          inputs:
-            - path: rtsp://localhost:8554/Basement_3D_Printer_Pinky
-              roles:
-                - detect
-                - record
-        live:
-          streams:
-            Basement_3D_Printer_Pinky: Basement_3D_Printer_Pinky
-        zones: {}
+      #Basement_3D_Printer_Pinky:
+      #  webui_url: https://pinky.farhoodliquor.com
+      #  ui:
+      #    order: 501
+      #    dashboard: true
+      #  detect:
+      #    enabled: false
+      #  audio:
+      #    enabled: false
+      #  ffmpeg:
+      #    inputs:
+      #      - path: rtsp://localhost:8554/Basement_3D_Printer_Pinky
+      #        roles:
+      #          - detect
+      #          - record
+      #  live:
+      #    streams:
+      #      Basement_3D_Printer_Pinky: Basement_3D_Printer_Pinky
+      #  zones: {}
       Basement_3D_Printer_TheBrain:
         webui_url: https://thebrain.farhoodliquor.com
         ui:
@@ -224,8 +224,8 @@ data:
         zones: {}
     go2rtc:
       streams:
-        Foyer_Hallway_Camera:
-          - onvif://172.20.248.108:8088
+        #Foyer_Hallway_Camera:
+        #  - onvif://172.20.248.108:8088
         Mudroom_Hallway_Camera:
           - ffmpeg:rtsp://172.20.248.243:554/stream1#hardware#video&audio=copy#raw=-r
             20
