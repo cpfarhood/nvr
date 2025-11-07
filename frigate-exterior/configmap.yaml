@@ -21,6 +21,17 @@ data:
     detect:
       enabled: true
       min_initialized: 2
+    semantic_search:
+      enabled: false
+      model_size: small
+    face_recognition:
+      enabled: true
+      model_size: large
+    lpr:
+      enabled: true
+    classification:
+      bird:
+        enabled: false
     objects:
       track:
         - person

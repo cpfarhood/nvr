@@ -28,7 +28,7 @@ data:
       enabled: true
       model_size: large
     lpr:
-      enabled: true
+      enabled: false
     classification:
       bird:
         enabled: false
