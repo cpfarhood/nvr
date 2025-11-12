@@ -79,6 +79,8 @@ spec:
             timeoutSeconds: 10
           env:
           envFrom:
+            - secretRef:
+                name: frigate-plus-api-key
           volumeMounts:
             - mountPath: /config
               name: config
